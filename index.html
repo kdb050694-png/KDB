@@ -1,0 +1,6467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A private premium relationship website for Komal with a birthday countdown and admin-managed memories." />
+  <meta name="theme-color" content="#0b0709" />
+  <title>For Komal | Birthday Countdown</title>
+  <style id="komal-critical-css" type="text/css">
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; background: #0b0709; color: #fff8f7; overflow-x: hidden; }
+    body {
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at 15% 8%, rgba(255, 159, 184, 0.26), transparent 28%),
+        radial-gradient(circle at 90% 18%, rgba(244, 197, 111, 0.2), transparent 32%),
+        linear-gradient(135deg, #070405 0%, #170c11 52%, #090607 100%);
+    }
+    .nav, .admin-corner, .time-card, .admin-panel, .public-message-composer, .birthday-message-card {
+      border: 1px solid rgba(244, 197, 111, 0.22);
+      background: rgba(22, 13, 16, 0.72);
+      color: #fff8f7;
+    }
+    .hero { min-height: 100svh; display: grid; place-items: center; padding: 72px 12px 18px; text-align: center; }
+    h1 { margin: 0; color: #fff8fa; font-size: clamp(28px, 9vw, 86px); line-height: 1; }
+  </style>
+  <style id="komal-embedded-css" type="text/css">
+:root {
+  --bg: #0b0709;
+  --bg-soft: #151013;
+  --panel: rgba(255, 255, 255, 0.075);
+  --panel-strong: rgba(255, 255, 255, 0.12);
+  --line: rgba(255, 255, 255, 0.14);
+  --text: #fff8f7;
+  --muted: #d8c5c0;
+  --rose: #ff9fb8;
+  --rose-deep: #8f3449;
+  --gold: #f4c56f;
+  --gold-soft: #ffe2a5;
+  --shadow: 0 28px 90px rgba(0, 0, 0, 0.48);
+  --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --serif: Georgia, "Times New Roman", serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 15% 8%, rgba(255, 159, 184, 0.26), transparent 28%),
+    radial-gradient(circle at 90% 18%, rgba(244, 197, 111, 0.2), transparent 32%),
+    radial-gradient(circle at 60% 92%, rgba(143, 52, 73, 0.28), transparent 32%),
+    linear-gradient(135deg, #070405 0%, #170c11 52%, #090607 100%);
+  font-family: var(--serif);
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 58px 58px;
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  background-image: var(--watermark-image);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: min(54vw, 520px);
+  filter: sepia(0.18) saturate(0.8);
+  transition: opacity 0.35s ease;
+}
+
+body.has-watermark::after {
+  opacity: 0.12;
+}
+
+main {
+  position: relative;
+  z-index: 2;
+}
+
+a {
+  color: inherit;
+}
+
+.nav {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  z-index: 20;
+  width: min(1040px, calc(100% - 96px));
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(11, 7, 9, 0.78);
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(18px);
+}
+
+.nav-links {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+  font-family: var(--sans);
+  font-size: 11px;
+}
+
+.nav-links a {
+  flex: 1 1 0;
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  color: var(--gold-soft);
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 520px) {
+  .nav {
+    width: calc(100% - 72px);
+    padding: 8px;
+  }
+
+  .nav-links {
+    gap: 5px;
+    font-size: 8px;
+  }
+
+  .nav-links a {
+    min-height: 30px;
+    padding: 6px 4px;
+  }
+
+  h1 {
+    font-size: clamp(24px, 7.2vw, 34px);
+  }
+}
+
+.message-composer {
+  display: grid;
+  gap: 12px;
+  margin: 8px 0;
+  padding: 14px;
+  border: 1px solid rgba(244, 197, 111, 0.18);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.message-composer h4 {
+  color: var(--gold-soft);
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.birthday-messages {
+  width: min(860px, 100%);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  margin: 22px auto 0;
+}
+
+.temp-message-link {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: center;
+  margin: 6px auto 0;
+  border: 1px solid rgba(244, 197, 111, 0.3);
+  border-radius: 999px;
+  padding: 9px 16px;
+  background: rgba(255, 255, 255, 0.055);
+  color: var(--gold-soft);
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-transform: uppercase;
+  box-shadow:
+    0 0 18px rgba(255, 159, 184, 0.12),
+    inset 0 0 16px rgba(244, 197, 111, 0.06);
+}
+
+.public-message-composer {
+  width: min(520px, 100%);
+  display: grid;
+  gap: 12px;
+  margin: 18px auto 0;
+  padding: 16px;
+  border: 1px solid rgba(244, 197, 111, 0.22);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 0 24px rgba(255, 159, 184, 0.12),
+    inset 0 0 18px rgba(244, 197, 111, 0.05);
+}
+
+.public-message-composer h3 {
+  color: var(--rose);
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.birthday-message-card {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid rgba(244, 197, 111, 0.18);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow:
+    0 0 22px rgba(255, 159, 184, 0.12),
+    inset 0 0 18px rgba(244, 197, 111, 0.04);
+  text-align: left;
+}
+
+.birthday-message-card img,
+.birthday-message-card video {
+  width: 100%;
+  max-height: 260px;
+  border-radius: 14px;
+  object-fit: cover;
+  display: block;
+}
+
+.birthday-message-card h3 {
+  color: var(--rose);
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 6px;
+}
+
+.birthday-message-card p {
+  color: var(--muted);
+  font-family: var(--sans);
+  line-height: 1.65;
+}
+
+@media (min-width: 720px) {
+  .birthday-message-card {
+    grid-template-columns: minmax(180px, 240px) 1fr;
+    align-items: center;
+  }
+}
+
+.nav-links a:hover {
+  color: #fff;
+  border-color: rgba(244, 197, 111, 0.36);
+}
+
+section {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 76px 0;
+}
+
+.landing-heading {
+  padding: 42px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hidden-public-section {
+  display: none;
+}
+
+.hero {
+  width: 100%;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 88px 16px 24px;
+  text-align: center;
+}
+
+.hero-inner {
+  width: min(1100px, 100%);
+}
+
+.eyebrow {
+  margin-bottom: 18px;
+  color: var(--gold);
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+h1 {
+  width: 100%;
+  max-width: min(1280px, calc(100vw - 48px));
+  margin: 0 auto;
+  font-size: clamp(32px, 6.1vw, 86px);
+  font-weight: 400;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.hero-copy {
+  max-width: 760px;
+  margin: 16px auto 0;
+  color: var(--muted);
+  font-size: clamp(15px, 2.8vw, 20px);
+  line-height: 1.5;
+}
+
+.birthday-graphic {
+  position: relative;
+  width: min(150px, 34vw);
+  aspect-ratio: 1;
+  margin: 18px auto 4px;
+  display: grid;
+  place-items: center;
+}
+
+.hero-love-graphics {
+  position: absolute;
+  inset: -28px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.love-note-card {
+  position: absolute;
+  left: -24px;
+  bottom: 10px;
+  width: 44px;
+  height: 34px;
+  border: 1px solid rgba(244, 197, 111, 0.48);
+  border-radius: 5px;
+  background:
+    linear-gradient(145deg, rgba(255, 253, 249, 0.94), rgba(255, 226, 229, 0.74));
+  box-shadow:
+    0 0 18px rgba(244, 197, 111, 0.22),
+    0 8px 22px rgba(0, 0, 0, 0.28);
+  transform: rotate(-13deg);
+  animation: loveFloat 4.8s ease-in-out infinite;
+}
+
+.love-note-card::before,
+.love-note-card::after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  width: 26px;
+  height: 1px;
+  background: rgba(143, 52, 73, 0.34);
+}
+
+.love-note-card::before {
+  left: 0;
+  transform: rotate(36deg);
+  transform-origin: left;
+}
+
+.love-note-card::after {
+  right: 0;
+  transform: rotate(-36deg);
+  transform-origin: right;
+}
+
+.love-note-card span {
+  position: absolute;
+  left: 50%;
+  top: 7px;
+  width: 10px;
+  height: 10px;
+  transform: translateX(-50%) rotate(45deg);
+  background: #ff8fab;
+  box-shadow: 0 0 12px rgba(255, 159, 184, 0.55);
+}
+
+.love-note-card span::before,
+.love-note-card span::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff8fab;
+}
+
+.love-note-card span::before {
+  left: -5px;
+}
+
+.love-note-card span::after {
+  top: -5px;
+}
+
+.love-charm {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  transform: rotate(45deg);
+  background: rgba(255, 159, 184, 0.74);
+  box-shadow: 0 0 20px rgba(255, 159, 184, 0.45);
+  animation: charmPulse 3.8s ease-in-out infinite;
+}
+
+.love-charm::before,
+.love-charm::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: inherit;
+}
+
+.love-charm::before {
+  left: -6px;
+}
+
+.love-charm::after {
+  top: -6px;
+}
+
+.charm-one {
+  right: -14px;
+  top: 18px;
+}
+
+.charm-two {
+  right: 8px;
+  bottom: -18px;
+  width: 9px;
+  height: 9px;
+  animation-delay: 0.8s;
+}
+
+.charm-two::before,
+.charm-two::after {
+  width: 9px;
+  height: 9px;
+}
+
+.charm-two::before {
+  left: -4.5px;
+}
+
+.charm-two::after {
+  top: -4.5px;
+}
+
+.charm-three {
+  left: 10px;
+  top: -12px;
+  width: 8px;
+  height: 8px;
+  background: rgba(244, 197, 111, 0.72);
+  animation-delay: 1.4s;
+}
+
+.charm-three::before,
+.charm-three::after {
+  width: 8px;
+  height: 8px;
+}
+
+.charm-three::before {
+  left: -4px;
+}
+
+.charm-three::after {
+  top: -4px;
+}
+
+@keyframes loveFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-13deg);
+  }
+
+  50% {
+    transform: translateY(-8px) rotate(-8deg);
+  }
+}
+
+@keyframes charmPulse {
+  0%,
+  100% {
+    opacity: 0.54;
+    transform: scale(0.9) rotate(45deg);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.12) rotate(45deg);
+  }
+}
+
+.gift-box {
+  position: relative;
+  width: 86px;
+  height: 70px;
+  border: 1px solid rgba(244, 197, 111, 0.58);
+  border-radius: 18px 18px 24px 24px;
+  background:
+    linear-gradient(90deg, transparent 43%, rgba(244, 197, 111, 0.36) 43%, rgba(244, 197, 111, 0.36) 57%, transparent 57%),
+    linear-gradient(135deg, rgba(255, 159, 184, 0.42), rgba(244, 197, 111, 0.18));
+  box-shadow: 0 26px 80px rgba(255, 159, 184, 0.2);
+}
+
+.gift-box::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  right: -10px;
+  top: -14px;
+  height: 24px;
+  border: 1px solid rgba(244, 197, 111, 0.58);
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(244, 197, 111, 0.26), rgba(255, 159, 184, 0.32));
+}
+
+.gift-box::after {
+  content: "\2665";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: 31px;
+  text-shadow: 0 0 28px rgba(255, 255, 255, 0.4);
+}
+
+.gift-box span::before,
+.gift-box span::after {
+  content: "";
+  position: absolute;
+  top: -41px;
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(244, 197, 111, 0.62);
+  border-radius: 50% 50% 12px 50%;
+}
+
+.gift-box span::before {
+  left: 16px;
+  transform: rotate(-32deg);
+}
+
+.gift-box span::after {
+  right: 16px;
+  transform: rotate(122deg);
+}
+
+.graphic-ring {
+  position: absolute;
+  inset: 8px;
+  z-index: -1;
+  border: 1px solid rgba(244, 197, 111, 0.24);
+  border-radius: 50%;
+}
+
+.ring-two {
+  inset: 30px;
+  border-color: rgba(255, 159, 184, 0.26);
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 16px auto 0;
+  max-width: 760px;
+}
+
+.time-card {
+  min-height: 104px;
+  display: grid;
+  place-items: center;
+  padding: 18px 10px;
+  border: 1px solid rgba(244, 197, 111, 0.22);
+  border-radius: 22px;
+  background:
+    linear-gradient(150deg, rgba(255, 159, 184, 0.16), rgba(244, 197, 111, 0.1)),
+    rgba(255, 255, 255, 0.07);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.time-card strong {
+  display: block;
+  color: #fff;
+  font-family: var(--sans);
+  font-size: clamp(36px, 10vw, 78px);
+  line-height: 0.85;
+}
+
+.time-card span {
+  color: var(--gold-soft);
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.hero-actions,
+.form-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.btn,
+button {
+  min-height: 46px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  padding: 12px 20px;
+  font-family: var(--sans);
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.btn.primary,
+button.primary {
+  border-color: rgba(244, 197, 111, 0.4);
+  background: linear-gradient(135deg, rgba(255, 159, 184, 0.3), rgba(244, 197, 111, 0.2));
+}
+
+.btn.subtle {
+  min-height: 38px;
+  padding: 8px 14px;
+}
+
+.btn:hover,
+button:hover {
+  transform: translateY(-2px);
+  border-color: rgba(244, 197, 111, 0.42);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.section-title {
+  max-width: 900px;
+  margin: 0 auto 18px;
+  font-size: clamp(34px, 8vw, 72px);
+  font-weight: 400;
+  line-height: 1.02;
+  text-align: center;
+}
+
+.section-subtitle {
+  max-width: 720px;
+  margin: 0 auto 38px;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.glass,
+.birthday-card,
+.memory-card,
+.photo-card,
+.data-card,
+.moment {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.glass {
+  border-radius: 26px;
+  padding: clamp(22px, 5vw, 42px);
+}
+
+.timeline {
+  display: grid;
+  gap: 16px;
+}
+
+.moment {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  padding: 22px;
+  border-radius: 22px;
+}
+
+.moment-date,
+.memory-meta {
+  color: var(--gold);
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.moment h3,
+.memory-card h3,
+.photo-card h3,
+.data-card h3,
+.admin-content h3,
+.admin-auth-card h3 {
+  color: var(--rose);
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.moment p,
+.memory-card p,
+.photo-card p,
+.data-card p {
+  color: var(--muted);
+  font-family: var(--sans);
+  line-height: 1.7;
+}
+
+.vault-grid,
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.memory-card,
+.data-card {
+  min-height: 176px;
+  padding: 24px;
+  border-radius: 22px;
+}
+
+.memory-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.memory-card::after {
+  content: "";
+  position: absolute;
+  right: -44px;
+  bottom: -44px;
+  width: 126px;
+  height: 126px;
+  border: 1px solid rgba(244, 197, 111, 0.22);
+  border-radius: 999px;
+}
+
+.memory-meta {
+  display: block;
+  margin-bottom: 18px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.photo-card {
+  min-height: 260px;
+  overflow: hidden;
+  border-radius: 24px;
+}
+
+.photo-frame {
+  aspect-ratio: 4 / 5;
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(135deg, rgba(255, 159, 184, 0.2), rgba(244, 197, 111, 0.14)),
+    rgba(255, 255, 255, 0.05);
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.photo-placeholder {
+  width: 78px;
+  height: 78px;
+  border: 1px solid rgba(244, 197, 111, 0.34);
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  color: var(--gold);
+  font-family: var(--sans);
+  font-size: 24px;
+}
+
+.photo-card-body {
+  padding: 20px;
+}
+
+.note-box {
+  text-align: center;
+}
+
+#randomNote {
+  min-height: 148px;
+  display: grid;
+  place-items: center;
+  max-width: 780px;
+  margin: 10px auto 24px;
+  color: #fff;
+  font-size: clamp(24px, 8vw, 48px);
+  line-height: 1.25;
+  transition: opacity 0.24s ease;
+}
+
+.birthday-card {
+  padding: clamp(28px, 7vw, 60px);
+  border-radius: 30px;
+  text-align: center;
+  background:
+    linear-gradient(135deg, rgba(255, 159, 184, 0.24), rgba(244, 197, 111, 0.16)),
+    rgba(255, 255, 255, 0.08);
+}
+
+.birthday-card h2 {
+  color: var(--rose);
+  font-size: clamp(38px, 10vw, 88px);
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+.birthday-card p:last-child {
+  max-width: 820px;
+  margin: 0 auto;
+  color: #fff1f4;
+  font-size: clamp(19px, 5vw, 30px);
+  line-height: 1.65;
+}
+
+form {
+  display: grid;
+  gap: 14px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+label {
+  display: grid;
+  gap: 8px;
+  color: var(--gold-soft);
+  font-family: var(--sans);
+  font-size: 13px;
+}
+
+.admin-editor-grid {
+  max-width: none;
+  grid-template-columns: 1fr;
+}
+
+input,
+textarea {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  padding: 15px 16px;
+  font-family: var(--sans);
+  font-size: 15px;
+  outline: none;
+}
+
+input:focus,
+textarea:focus {
+  border-color: rgba(244, 197, 111, 0.55);
+}
+
+textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.52);
+}
+
+.status {
+  min-height: 24px;
+  margin-top: 14px;
+  color: var(--gold);
+  font-family: var(--sans);
+  font-size: 14px;
+  text-align: center;
+}
+
+.section-gap {
+  height: 28px;
+}
+
+.admin-panel {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 26px 16px;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(255, 159, 184, 0.24), transparent 30%),
+    rgba(8, 5, 6, 0.96);
+}
+
+.admin-panel.is-open {
+  display: block;
+}
+
+.admin-header {
+  width: min(980px, 100%);
+  margin: 0 auto 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+.admin-header .section-title {
+  text-align: left;
+}
+
+.icon-button {
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 28px;
+}
+
+.admin-grid {
+  width: min(980px, 100%);
+  margin: 0 auto;
+}
+
+.admin-session {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 22px;
+  color: var(--muted);
+  font-family: var(--sans);
+  flex-wrap: wrap;
+}
+
+.admin-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.admin-tab {
+  min-height: 38px;
+  padding: 8px 14px;
+}
+
+.admin-tab.is-active {
+  border-color: rgba(244, 197, 111, 0.5);
+  background: rgba(244, 197, 111, 0.14);
+}
+
+.admin-corner {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 25;
+  min-height: 36px;
+  padding: 8px 12px;
+  border-color: rgba(244, 197, 111, 0.24);
+  background: rgba(11, 7, 9, 0.82);
+  color: var(--gold-soft);
+  font-size: 11px;
+  text-transform: uppercase;
+  backdrop-filter: blur(18px);
+}
+
+footer {
+  padding: 44px 18px 70px;
+  color: var(--muted);
+  font-family: var(--sans);
+  line-height: 1.8;
+  text-align: center;
+}
+
+.heart {
+  position: fixed;
+  z-index: 4;
+  width: 10px;
+  height: 10px;
+  background:
+    linear-gradient(135deg, rgba(255, 159, 184, 0.78), rgba(244, 197, 111, 0.28));
+  pointer-events: none;
+  border-radius: 2px;
+  text-shadow:
+    0 0 8px rgba(255, 159, 184, 0.52),
+    0 0 16px rgba(244, 197, 111, 0.2);
+  box-shadow:
+    0 0 8px rgba(255, 159, 184, 0.42),
+    0 0 18px rgba(244, 197, 111, 0.16);
+  animation: fall linear forwards;
+  transform: rotate(45deg);
+  will-change: transform, opacity;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: inherit;
+}
+
+.heart::before {
+  left: -50%;
+}
+
+.heart::after {
+  top: -50%;
+}
+
+@keyframes fall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -20px, 0) rotate(45deg) scale(0.8);
+  }
+
+  12% {
+    opacity: 0.78;
+  }
+
+  to {
+    transform: translate3d(var(--heart-drift), 108vh, 0) rotate(calc(var(--heart-spin) + 45deg)) scale(1.08);
+    opacity: 0;
+  }
+}
+
+@media (min-width: 680px) {
+  .nav {
+    top: 18px;
+    padding: 10px 14px;
+  }
+
+  .nav-links {
+    font-size: 11px;
+    gap: 8px;
+  }
+
+  .countdown {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .time-card {
+    min-height: 126px;
+  }
+
+  .moment {
+    grid-template-columns: 132px 1fr;
+    gap: 24px;
+  }
+
+  .admin-editor-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .vault-grid,
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 980px) {
+  section {
+    padding: 96px 0;
+  }
+
+  .landing-heading {
+    padding: 48px 0;
+  }
+
+  .hero {
+    padding-top: 104px;
+  }
+
+  .vault-grid,
+  .cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Final landing polish */
+.nav {
+  padding: 12px 14px;
+  border-color: rgba(244, 197, 111, 0.22);
+  background:
+    linear-gradient(150deg, rgba(255, 159, 184, 0.16), rgba(244, 197, 111, 0.1)),
+    rgba(64, 36, 38, 0.74);
+  box-shadow:
+    0 16px 50px rgba(0, 0, 0, 0.32),
+    0 0 34px rgba(244, 197, 111, 0.16),
+    inset 0 0 22px rgba(255, 159, 184, 0.08);
+}
+
+.nav-links {
+  gap: 10px;
+  font-size: 12px;
+}
+
+.nav-links a,
+.admin-corner {
+  min-height: 42px;
+  border-color: rgba(244, 197, 111, 0.28);
+  background:
+    linear-gradient(150deg, rgba(255, 159, 184, 0.2), rgba(244, 197, 111, 0.12)),
+    rgba(255, 255, 255, 0.075);
+  color: var(--gold-soft);
+  padding: 10px 14px;
+  box-shadow:
+    inset 0 0 20px rgba(244, 197, 111, 0.1),
+    0 0 20px rgba(255, 159, 184, 0.14);
+  text-shadow: 0 0 14px rgba(244, 197, 111, 0.58);
+}
+
+.nav-links a:hover {
+  border-color: rgba(244, 197, 111, 0.62);
+  background:
+    linear-gradient(150deg, rgba(255, 159, 184, 0.28), rgba(244, 197, 111, 0.18)),
+    rgba(255, 255, 255, 0.11);
+  box-shadow:
+    inset 0 0 24px rgba(244, 197, 111, 0.18),
+    0 0 34px rgba(255, 159, 184, 0.24),
+    0 0 24px rgba(244, 197, 111, 0.18);
+}
+
+.public-page {
+  display: none;
+  min-height: 100vh;
+  place-items: center;
+  padding-top: 128px;
+  text-align: center;
+}
+
+.public-page.is-active-page {
+  display: grid;
+}
+
+body.page-open .hero {
+  display: none;
+}
+
+.hero h1 {
+  text-shadow:
+    0 0 24px rgba(255, 255, 255, 0.26),
+    0 0 54px rgba(255, 159, 184, 0.34),
+    0 0 90px rgba(244, 197, 111, 0.18);
+}
+
+.hero-copy {
+  max-width: 860px;
+  font-size: clamp(18px, 3.1vw, 26px);
+  line-height: 1.42;
+  text-shadow:
+    0 0 18px rgba(255, 255, 255, 0.18),
+    0 0 28px rgba(244, 197, 111, 0.16);
+}
+
+@media (max-width: 620px) {
+  .nav {
+    width: calc(100% - 58px);
+    padding: 8px;
+  }
+
+  .nav-links {
+    gap: 5px;
+    font-size: 8.5px;
+  }
+
+  .nav-links a {
+    min-height: 32px;
+    padding: 7px 4px;
+  }
+
+  .admin-corner {
+    min-height: 34px;
+    padding: 7px 10px;
+  }
+}
+
+.birthday-graphic {
+  width: min(190px, 40vw);
+  filter:
+    drop-shadow(0 0 18px rgba(255, 159, 184, 0.4))
+    drop-shadow(0 0 42px rgba(244, 197, 111, 0.22));
+}
+
+.love-gift {
+  position: relative;
+  width: 140px;
+  height: 130px;
+  display: grid;
+  place-items: end center;
+}
+
+.love-gift .gift-box {
+  position: absolute;
+  bottom: 14px;
+  width: 100px;
+  height: 76px;
+  border: 1px solid rgba(244, 197, 111, 0.62);
+  border-radius: 16px 16px 26px 26px;
+  background:
+    linear-gradient(90deg, transparent 41%, rgba(244, 197, 111, 0.5) 41%, rgba(244, 197, 111, 0.5) 59%, transparent 59%),
+    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.16), transparent 28%),
+    linear-gradient(135deg, rgba(255, 159, 184, 0.52), rgba(143, 52, 73, 0.5));
+  box-shadow:
+    inset 0 0 24px rgba(255, 255, 255, 0.1),
+    0 24px 72px rgba(255, 159, 184, 0.24);
+}
+
+.love-gift .gift-box::before {
+  content: none;
+}
+
+.love-gift .gift-box::after {
+  content: "\2665";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #fff9fb;
+  font-size: 36px;
+  text-shadow:
+    0 0 18px rgba(255, 255, 255, 0.55),
+    0 0 34px rgba(255, 159, 184, 0.6);
+}
+
+.gift-lid {
+  position: absolute;
+  bottom: 82px;
+  width: 120px;
+  height: 28px;
+  border: 1px solid rgba(244, 197, 111, 0.62);
+  border-radius: 16px 16px 10px 10px;
+  background:
+    linear-gradient(90deg, transparent 43%, rgba(244, 197, 111, 0.52) 43%, rgba(244, 197, 111, 0.52) 57%, transparent 57%),
+    linear-gradient(135deg, rgba(244, 197, 111, 0.34), rgba(255, 159, 184, 0.44));
+}
+
+.gift-ribbon {
+  position: absolute;
+  bottom: 14px;
+  width: 18px;
+  height: 104px;
+  border-radius: 999px;
+  background: linear-gradient(to bottom, rgba(255, 226, 165, 0.96), rgba(244, 197, 111, 0.42));
+  box-shadow: 0 0 20px rgba(244, 197, 111, 0.42);
+}
+
+.love-gift .gift-box span::before,
+.love-gift .gift-box span::after {
+  top: -52px;
+  width: 48px;
+  height: 48px;
+  border-color: rgba(244, 197, 111, 0.68);
+  background: rgba(255, 159, 184, 0.08);
+}
+
+.love-gift .gift-box span::before {
+  left: 18px;
+}
+
+.love-gift .gift-box span::after {
+  right: 18px;
+}
+
+.heart-burst {
+  position: absolute;
+  top: 6px;
+  width: 42px;
+  height: 42px;
+  transform: rotate(-45deg);
+  background: linear-gradient(135deg, rgba(255, 159, 184, 0.95), rgba(244, 197, 111, 0.42));
+  box-shadow:
+    0 0 22px rgba(255, 159, 184, 0.52),
+    0 0 46px rgba(244, 197, 111, 0.18);
+}
+
+.heart-burst::before,
+.heart-burst::after {
+  content: "";
+  position: absolute;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: inherit;
+}
+
+.heart-burst::before {
+  top: -21px;
+  left: 0;
+}
+
+.heart-burst::after {
+  top: 0;
+  left: 21px;
+}
+
+.heart-left {
+  left: 6px;
+  transform: scale(0.74) rotate(-45deg);
+}
+
+.heart-right {
+  right: 4px;
+  top: 16px;
+  transform: scale(0.52) rotate(-45deg);
+}
+
+.time-card {
+  box-shadow:
+    var(--shadow),
+    0 0 26px rgba(255, 159, 184, 0.16),
+    inset 0 0 24px rgba(244, 197, 111, 0.08);
+}
+
+.time-card strong {
+  text-shadow:
+    0 0 18px rgba(255, 255, 255, 0.28),
+    0 0 34px rgba(255, 159, 184, 0.22);
+}
+
+.time-card span {
+  text-shadow: 0 0 14px rgba(244, 197, 111, 0.5);
+}
+
+/* Mobile-first page and admin refinements */
+.public-page {
+  align-items: start;
+  justify-items: center;
+  padding-top: 118px;
+}
+
+.public-page .section-title {
+  margin-top: 0;
+  text-shadow:
+    0 0 22px rgba(255, 255, 255, 0.2),
+    0 0 42px rgba(255, 159, 184, 0.24);
+}
+
+.admin-auth-card {
+  width: min(360px, calc(100vw - 36px));
+  margin: 18px auto 0;
+  padding: 22px;
+  border-radius: 22px;
+}
+
+.admin-auth-card h3 {
+  text-align: center;
+}
+
+.admin-auth-card form,
+.admin-form {
+  max-width: none;
+  position: relative;
+}
+
+.panel-minimize {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-height: 32px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  color: var(--gold-soft);
+  font-size: 11px;
+}
+
+.admin-content {
+  padding: 18px;
+}
+
+.admin-workspace {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.admin-tabs {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 7px;
+  align-content: start;
+  margin-bottom: 0;
+  width: min(280px, 100%);
+}
+
+.admin-tab {
+  width: 100%;
+  justify-content: flex-start;
+  min-height: 34px;
+  border-radius: 12px;
+  padding: 8px 14px;
+  text-align: left;
+}
+
+.admin-panels {
+  min-width: 0;
+  width: 100%;
+}
+
+.kv-lock,
+.kv-content,
+.protected-lock,
+.protected-content {
+  width: min(620px, 100%);
+}
+
+.kv-password-form,
+.protected-password-form {
+  max-width: 360px;
+  margin-top: 18px;
+}
+
+.protected-lock .section-title {
+  margin-bottom: 18px;
+}
+
+.nav-links a:hover,
+.admin-corner:hover,
+.admin-tab:hover,
+.btn:hover,
+button:hover,
+.time-card:hover,
+.glass:hover,
+.public-page .section-title:hover,
+.birthday-graphic:hover,
+input:hover,
+textarea:hover {
+  box-shadow:
+    0 0 22px rgba(255, 159, 184, 0.22),
+    0 0 38px rgba(244, 197, 111, 0.14),
+    inset 0 0 20px rgba(244, 197, 111, 0.08);
+  border-color: rgba(244, 197, 111, 0.42);
+}
+
+@media (max-width: 520px) {
+  .nav {
+    width: calc(100% - 68px);
+    padding: 7px;
+  }
+
+  .nav-links {
+    gap: 4px;
+    font-size: 7px;
+  }
+
+  .nav-links a {
+    min-height: 28px;
+    padding: 5px 3px;
+  }
+
+  .public-page {
+    padding-top: 104px;
+  }
+
+  .admin-panel {
+    padding: 16px 12px;
+  }
+
+  .admin-header {
+    align-items: center;
+  }
+
+  .admin-header .section-title {
+    font-size: 30px;
+  }
+}
+
+@media (min-width: 760px) {
+  .admin-workspace {
+    grid-template-columns: 220px 1fr;
+  }
+
+  .admin-content {
+    padding: 24px;
+  }
+}
+
+/* Lightweight admin control center */
+.admin-content.glass {
+  width: min(1180px, calc(100vw - 28px));
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.admin-session {
+  width: min(280px, 100%);
+  margin: 0 0 14px;
+  padding: 10px 12px;
+  border: 1px solid rgba(244, 197, 111, 0.18);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.admin-workspace {
+  align-items: start;
+}
+
+.admin-tabs {
+  width: min(280px, 100%);
+}
+
+.admin-tab {
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 0 16px rgba(255, 159, 184, 0.08);
+}
+
+.admin-panels {
+  width: min(720px, 100%);
+}
+
+.admin-form {
+  padding: 18px;
+  border: 1px solid rgba(244, 197, 111, 0.18);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.065);
+  box-shadow:
+    0 0 24px rgba(255, 159, 184, 0.1),
+    inset 0 0 20px rgba(244, 197, 111, 0.04);
+}
+
+.panel-minimize {
+  width: 34px;
+  min-height: 30px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  line-height: 1;
+}
+
+@media (max-width: 759px) {
+  .admin-session,
+  .admin-tabs,
+  .admin-panels {
+    width: 100%;
+  }
+
+  .admin-form {
+    padding: 16px;
+  }
+}
+
+/* Proportional admin layout */
+.admin-panel {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(255, 159, 184, 0.18), transparent 30%),
+    rgba(6, 3, 5, 0.92);
+}
+
+.admin-header {
+  width: min(760px, calc(100vw - 32px));
+  margin: 0 auto 22px;
+  display: block;
+}
+
+.admin-header .eyebrow,
+.admin-header .section-title {
+  text-align: center;
+}
+
+.admin-header .section-title {
+  max-width: 760px;
+  font-size: clamp(38px, 6vw, 72px);
+  line-height: 1;
+  margin-bottom: 0;
+}
+
+.admin-grid {
+  width: min(760px, calc(100vw - 32px));
+}
+
+.admin-content.glass {
+  width: 100%;
+}
+
+.admin-session {
+  width: min(360px, 100%);
+  margin: 0 auto 16px;
+}
+
+.admin-workspace {
+  width: min(360px, 100%);
+  margin: 0 auto;
+}
+
+.admin-tabs {
+  width: 100%;
+}
+
+.admin-tab {
+  min-height: 42px;
+  font-size: 14px;
+}
+
+.admin-panels {
+  width: min(560px, 100%);
+}
+
+.admin-form {
+  margin-top: 2px;
+}
+
+@media (min-width: 760px) {
+  .admin-workspace:has(.admin-form:not([hidden])) {
+    width: min(760px, 100%);
+    grid-template-columns: 240px 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .admin-header {
+    width: min(360px, calc(100vw - 24px));
+    margin-bottom: 16px;
+  }
+
+  .admin-header .section-title {
+    font-size: clamp(32px, 12vw, 46px);
+  }
+
+  .admin-grid {
+    width: min(360px, calc(100vw - 24px));
+  }
+
+  .admin-tab {
+    min-height: 40px;
+    font-size: 13px;
+  }
+}
+
+/* Full-width accordion admin layout */
+.admin-panel {
+  padding: 24px 14px;
+}
+
+.admin-header,
+.admin-grid {
+  width: min(920px, calc(100vw - 28px));
+}
+
+.admin-header {
+  margin-bottom: 18px;
+}
+
+.admin-header .section-title {
+  font-size: clamp(32px, 5vw, 58px);
+}
+
+.admin-content.glass {
+  width: min(920px, calc(100vw - 28px));
+}
+
+.admin-session {
+  width: 100%;
+  max-width: none;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 12px;
+  border-color: rgba(244, 197, 111, 0.26);
+}
+
+.admin-workspace,
+.admin-workspace:has(.admin-form:not([hidden])) {
+  width: 100%;
+  display: block;
+}
+
+.admin-tabs {
+  width: 100%;
+  display: grid;
+  gap: 9px;
+}
+
+.admin-tab {
+  width: 100%;
+  min-height: 44px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgba(244, 197, 111, 0.35);
+  border-radius: 8px;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.025)),
+    rgba(10, 6, 8, 0.68);
+  color: var(--gold-soft);
+  font-size: 13px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.admin-tab::after {
+  content: "+";
+  color: var(--gold-soft);
+  font-weight: 700;
+  text-shadow: 0 0 12px rgba(244, 197, 111, 0.7);
+}
+
+.admin-tab.is-active::after {
+  content: "-";
+}
+
+.admin-panels {
+  display: none;
+}
+
+.admin-tabs .admin-form {
+  width: 100%;
+  margin: -4px 0 4px;
+  border-radius: 8px;
+  border-color: rgba(244, 197, 111, 0.28);
+  background:
+    linear-gradient(135deg, rgba(255, 159, 184, 0.08), rgba(244, 197, 111, 0.05)),
+    rgba(12, 8, 10, 0.78);
+}
+
+.admin-tabs .admin-form h3 {
+  padding-right: 44px;
+  color: var(--gold-soft);
+  font-size: 19px;
+  font-family: var(--sans);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 520px) {
+  .admin-panel {
+    padding: 14px 10px;
+  }
+
+  .admin-header,
+  .admin-grid,
+  .admin-content.glass {
+    width: min(420px, calc(100vw - 20px));
+  }
+
+  .admin-header .section-title {
+    font-size: clamp(28px, 10vw, 40px);
+  }
+
+  .admin-tab {
+    min-height: 40px;
+    font-size: 11px;
+    letter-spacing: 0.4px;
+  }
+}
+
+/* Birthday message postcards and isolated share pages */
+.birthday-messages {
+  width: min(980px, 100%);
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  align-items: start;
+  gap: 24px;
+}
+
+.birthday-message-card {
+  position: relative;
+  width: min(100%, 380px);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  justify-self: center;
+  overflow: hidden;
+  padding: 16px 16px 26px;
+  border: 1px solid rgba(244, 197, 111, 0.44);
+  border-radius: 7px;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(255, 214, 167, 0.2), transparent 28%),
+    linear-gradient(180deg, #fffdf9 0%, #fff4e6 100%);
+  color: #241414;
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.3),
+    0 0 16px rgba(244, 197, 111, 0.16);
+  text-align: center;
+  transform: rotate(-1.2deg);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.birthday-message-card:nth-child(2n) {
+  transform: rotate(1.1deg);
+}
+
+.birthday-message-card:nth-child(3n) {
+  transform: rotate(-0.45deg);
+}
+
+.birthday-message-card:nth-child(5n) {
+  transform: rotate(1.8deg);
+}
+
+.birthday-message-card:hover {
+  transform: translateY(-5px) rotate(0deg) scale(1.025);
+  border-color: rgba(244, 197, 111, 0.78);
+  box-shadow:
+    0 20px 42px rgba(0, 0, 0, 0.44),
+    0 0 34px rgba(244, 197, 111, 0.42),
+    0 0 26px rgba(255, 159, 184, 0.28);
+}
+
+.message-media-button {
+  width: 100%;
+  display: block;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  cursor: zoom-in;
+}
+
+.message-media-button:focus-visible {
+  outline: 2px solid #8f3449;
+  outline-offset: 2px;
+}
+
+.birthday-message-card img,
+.birthday-message-card video {
+  width: 100%;
+  aspect-ratio: 1 / 0.78;
+  max-height: none;
+  border-radius: 4px;
+  object-fit: cover;
+  background: #f2e8de;
+  box-shadow: 0 5px 14px rgba(55, 29, 26, 0.18);
+}
+
+.birthday-message-card > div {
+  display: grid;
+  gap: 10px;
+  padding: 22px 12px 0;
+}
+
+.birthday-message-card h3 {
+  margin: 0;
+  color: #8f3449;
+  font-family: Chiller, "Brush Script MT", "Segoe Print", cursive;
+  font-size: clamp(30px, 3vw, 42px);
+  font-weight: 400;
+  line-height: 1;
+  text-shadow: 0 0 10px rgba(143, 52, 73, 0.16);
+}
+
+.birthday-message-card p {
+  color: #2d1d1c;
+  font-family: Chiller, "Segoe Print", "Bradley Hand ITC", cursive;
+  font-size: clamp(20px, 2vw, 27px);
+  line-height: 1.24;
+}
+
+.message-delete-button {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  z-index: 3;
+  min-height: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid rgba(143, 52, 73, 0.28);
+  border-radius: 999px;
+  padding: 4px 8px;
+  background: rgba(255, 253, 249, 0.82);
+  color: #8f3449;
+  font-family: var(--sans);
+  font-size: 11px;
+  line-height: 1;
+  box-shadow: 0 0 14px rgba(143, 52, 73, 0.16);
+}
+
+.message-delete-button span {
+  font-size: 18px;
+  line-height: 0.8;
+}
+
+.message-delete-button em {
+  font-style: normal;
+}
+
+.message-delete-button:hover {
+  transform: scale(1.08);
+  border-color: rgba(143, 52, 73, 0.55);
+  background: #fffdf9;
+  box-shadow:
+    0 0 20px rgba(143, 52, 73, 0.28),
+    0 0 18px rgba(244, 197, 111, 0.2);
+}
+
+.message-delete-dialog {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: none;
+  place-items: center;
+  padding: 18px;
+  background: rgba(5, 2, 4, 0.82);
+  backdrop-filter: blur(14px);
+}
+
+.message-delete-dialog.is-open {
+  display: grid;
+}
+
+.message-delete-card {
+  position: relative;
+  width: min(360px, 100%);
+  display: grid;
+  gap: 12px;
+  padding: 22px;
+  border: 1px solid rgba(244, 197, 111, 0.34);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 22% 0%, rgba(255, 159, 184, 0.18), transparent 32%),
+    rgba(12, 7, 9, 0.94);
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.58),
+    0 0 34px rgba(244, 197, 111, 0.18);
+}
+
+.message-delete-card h3 {
+  color: var(--gold-soft);
+  font-size: 28px;
+  text-align: center;
+}
+
+.message-delete-card p {
+  color: var(--love-text);
+  text-align: center;
+}
+
+.message-delete-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  min-height: 30px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.message-media-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: none;
+  place-items: center;
+  padding: 18px;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255, 159, 184, 0.18), transparent 32%),
+    rgba(2, 1, 2, 0.9);
+  backdrop-filter: blur(14px);
+}
+
+.message-media-viewer.is-open {
+  display: grid;
+}
+
+.message-media-stage {
+  width: min(860px, 94vw);
+  max-height: 88vh;
+  display: grid;
+  place-items: center;
+}
+
+.message-media-stage img,
+.message-media-stage video {
+  max-width: 100%;
+  max-height: 88vh;
+  border: 1px solid rgba(244, 197, 111, 0.46);
+  border-radius: 10px;
+  object-fit: contain;
+  background: #070405;
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.62),
+    0 0 42px rgba(244, 197, 111, 0.28),
+    0 0 28px rgba(255, 159, 184, 0.2);
+}
+
+.message-media-close {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(244, 197, 111, 0.42);
+  border-radius: 50%;
+  background: rgba(10, 6, 8, 0.82);
+  color: var(--gold-soft);
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 0 22px rgba(244, 197, 111, 0.16);
+}
+
+.message-media-close:hover {
+  box-shadow:
+    0 0 28px rgba(244, 197, 111, 0.4),
+    0 0 22px rgba(255, 159, 184, 0.28);
+}
+
+.share-message-link {
+  display: block;
+  margin: 8px 0 14px;
+  padding: 10px 12px;
+  overflow-wrap: anywhere;
+  border: 1px solid rgba(244, 197, 111, 0.34);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.055);
+  color: var(--gold-soft);
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.45;
+  text-decoration: none;
+}
+
+.share-message-link:hover {
+  border-color: rgba(244, 197, 111, 0.7);
+  box-shadow: 0 0 22px rgba(244, 197, 111, 0.22);
+}
+
+body.share-mode .nav,
+body.share-mode .admin-corner,
+body.share-mode .temp-message-link {
+  display: none;
+}
+
+body.share-mode .hero,
+body.share-mode .public-page {
+  min-height: 100vh;
+  padding-top: clamp(28px, 8vh, 72px);
+}
+
+body.share-mode .hero h1 {
+  font-size: clamp(32px, 8vw, 76px);
+}
+
+body.share-mode .birthday-graphic,
+body.share-mode .countdown,
+body.share-mode .hero-copy {
+  display: none;
+}
+
+body.share-mode .public-message-composer {
+  margin-top: 18px;
+  border-color: rgba(244, 197, 111, 0.38);
+  background:
+    linear-gradient(135deg, rgba(255, 159, 184, 0.1), rgba(244, 197, 111, 0.08)),
+    rgba(10, 6, 8, 0.82);
+}
+
+body.share-mode .birthday-messages {
+  margin-top: 20px;
+}
+
+@media (max-width: 560px) {
+  .birthday-messages {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .birthday-message-card {
+    width: 100%;
+    padding: 14px 14px 23px;
+  }
+
+  .birthday-message-card h3 {
+    font-size: 30px;
+  }
+
+  .birthday-message-card p {
+    font-size: 20px;
+  }
+
+  .public-message-composer {
+    border-radius: 12px;
+    padding: 14px;
+  }
+}
+
+/* Romantic typography pass */
+:root {
+  --text: #fff3f6;
+  --muted: #fff3f6;
+  --love-text: #fff3f6;
+  --love-tagline: #ffd6df;
+  --love-underline: rgba(255, 159, 184, 0.88);
+  --display-font: "Monotype Corsiva", "Segoe Script", "Lucida Handwriting", Georgia, serif;
+  --body-font: "Palatino Linotype", "Book Antiqua", Georgia, serif;
+}
+
+body,
+input,
+textarea,
+button {
+  color: var(--love-text);
+  font-family: var(--body-font);
+}
+
+p,
+li,
+label,
+span,
+.status,
+.admin-session,
+.section-subtitle,
+.memory-card p,
+.photo-card p,
+.data-card p,
+.moment p {
+  color: var(--love-text);
+}
+
+h1,
+h2,
+h3,
+.section-title,
+.hero-copy,
+.public-message-composer h3,
+.admin-content h3,
+.birthday-message-card h3,
+.birthday-message-card p {
+  font-family: var(--display-font);
+  letter-spacing: 0;
+}
+
+.nav-links,
+.nav-links a,
+.admin-corner,
+.admin-tab,
+.btn,
+button,
+input,
+textarea,
+.share-message-link,
+.message-composer h4,
+.time-card strong,
+.time-card span {
+  font-family: var(--body-font);
+}
+
+[data-content="heroTagline"],
+[data-content="storyTitle"],
+[data-content="vaultTitle"],
+[data-content="galleryTitle"],
+[data-content="notesTitle"],
+[data-content="guestbookTitle"],
+[data-content="birthdayTitle"] {
+  color: var(--love-tagline);
+  text-decoration-line: underline;
+  text-decoration-color: var(--love-underline);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.18em;
+  text-decoration-skip-ink: auto;
+  text-shadow:
+    0 0 16px rgba(255, 255, 255, 0.38),
+    0 0 30px rgba(255, 159, 184, 0.56),
+    0 0 48px rgba(244, 197, 111, 0.32);
+  transition: color 0.22s ease, text-shadow 0.22s ease, text-decoration-color 0.22s ease;
+}
+
+[data-content="heroTagline"]:hover,
+[data-content="storyTitle"]:hover,
+[data-content="vaultTitle"]:hover,
+[data-content="galleryTitle"]:hover,
+[data-content="notesTitle"]:hover,
+[data-content="guestbookTitle"]:hover,
+[data-content="birthdayTitle"]:hover {
+  color: #fff8fa;
+  text-decoration-color: rgba(244, 197, 111, 0.95);
+  text-shadow:
+    0 0 16px rgba(255, 255, 255, 0.38),
+    0 0 30px rgba(255, 159, 184, 0.56),
+    0 0 48px rgba(244, 197, 111, 0.32);
+}
+
+.public-page .section-title:hover,
+.hero-copy:hover,
+h1:hover,
+h2:hover,
+h3:hover,
+p:hover,
+span:hover,
+label:hover {
+  box-shadow: none;
+}
+
+.public-page .section-title:hover,
+.hero-copy:hover {
+  border-color: transparent;
+}
+
+/* Clean admin panel override */
+body:has(.admin-panel.is-open)::after {
+  opacity: 0;
+}
+
+body:has(.admin-panel.is-open) .nav,
+body:has(.admin-panel.is-open) .admin-corner {
+  display: none;
+}
+
+.admin-panel {
+  background: #070405;
+}
+
+.admin-panel::before {
+  content: none;
+}
+
+.admin-header {
+  width: min(920px, calc(100vw - 28px));
+  margin: 0 auto 14px;
+  text-align: center;
+}
+
+.admin-header > div {
+  width: 100%;
+}
+
+.admin-header .eyebrow {
+  display: none;
+}
+
+.admin-header .section-title {
+  max-width: none;
+  margin: 0;
+  color: var(--gold-soft);
+  font-family: var(--display-font);
+  font-size: clamp(30px, 5vw, 52px);
+  line-height: 1;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow:
+    0 0 18px rgba(244, 197, 111, 0.34),
+    0 0 34px rgba(255, 159, 184, 0.18);
+}
+
+.admin-content.glass {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.admin-session {
+  width: min(920px, calc(100vw - 28px));
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 auto 10px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+#adminUserLabel {
+  display: none;
+}
+
+#adminLogoutBtn {
+  min-height: 34px;
+  padding: 7px 14px;
+  border-color: rgba(244, 197, 111, 0.32);
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.panel-minimize {
+  display: none;
+}
+
+.admin-tabs .admin-form h3 {
+  padding-right: 0;
+}
+
+.admin-tabs .admin-form > h3 {
+  display: none;
+}
+
+/* Scrapbook collage for birthday letters */
+.birthday-messages {
+  width: min(1120px, 100%);
+  display: block;
+  columns: 260px;
+  column-gap: 26px;
+  margin: 34px auto 0;
+  padding: 10px 0 44px;
+}
+
+body.share-mode .birthday-messages {
+  width: min(640px, 100%);
+  columns: 1;
+}
+
+.birthday-message-card {
+  position: relative;
+  width: min(100%, 280px);
+  display: inline-block;
+  break-inside: avoid;
+  margin: 0 0 30px;
+  padding: 14px 14px 20px;
+  border: 1px solid rgba(244, 197, 111, 0.46);
+  border-radius: 5px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 244, 230, 0.96)),
+    #fffaf2;
+  color: #2d1d1c;
+  box-shadow:
+    0 18px 36px rgba(0, 0, 0, 0.38),
+    0 0 22px rgba(244, 197, 111, 0.18),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.48);
+  text-align: center;
+  transform: rotate(-2deg);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.birthday-message-card::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  z-index: 2;
+  width: 74px;
+  height: 22px;
+  border-radius: 3px;
+  background:
+    linear-gradient(90deg, rgba(255, 214, 223, 0.74), rgba(244, 197, 111, 0.62));
+  box-shadow:
+    0 4px 12px rgba(70, 30, 35, 0.2),
+    0 0 18px rgba(255, 159, 184, 0.16);
+  transform: translateX(-50%) rotate(3deg);
+}
+
+.birthday-message-card:nth-child(2n) {
+  transform: rotate(1.6deg);
+}
+
+.birthday-message-card:nth-child(3n) {
+  transform: rotate(-0.7deg);
+}
+
+.birthday-message-card:nth-child(5n) {
+  transform: rotate(2.4deg);
+}
+
+.birthday-message-card:hover {
+  border-color: rgba(244, 197, 111, 0.78);
+  box-shadow:
+    0 24px 50px rgba(0, 0, 0, 0.48),
+    0 0 34px rgba(244, 197, 111, 0.42),
+    0 0 30px rgba(255, 159, 184, 0.3);
+  transform: translateY(-6px) rotate(0deg) scale(1.035);
+}
+
+.message-media-button,
+.message-empty-photo {
+  width: 100%;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: #f2e8de;
+  cursor: zoom-in;
+}
+
+.message-empty-photo {
+  aspect-ratio: 1 / 0.78;
+  color: rgba(143, 52, 73, 0.4);
+  font-size: 44px;
+  cursor: default;
+}
+
+.message-empty-photo::before {
+  content: "";
+  width: 36px;
+  height: 36px;
+  border-radius: 5px;
+  background:
+    linear-gradient(135deg, rgba(255, 159, 184, 0.5), rgba(244, 197, 111, 0.24));
+  box-shadow:
+    0 0 18px rgba(255, 159, 184, 0.18),
+    0 0 24px rgba(244, 197, 111, 0.12);
+  transform: rotate(45deg);
+}
+
+.message-empty-photo::after {
+  content: none;
+}
+
+.birthday-message-card img,
+.birthday-message-card video {
+  width: 100%;
+  aspect-ratio: 1 / 0.78;
+  max-height: none;
+  display: block;
+  border-radius: 4px;
+  object-fit: cover;
+  background: #f2e8de;
+  box-shadow: 0 5px 14px rgba(55, 29, 26, 0.18);
+}
+
+.birthday-message-card > .birthday-message-body {
+  display: grid;
+  gap: 9px;
+  padding: 16px 5px 0;
+}
+
+.birthday-message-card h3 {
+  margin: 0;
+  color: #8f3449;
+  font-family: Chiller, "Brush Script MT", "Segoe Print", cursive;
+  font-size: clamp(26px, 2.4vw, 34px);
+  font-weight: 400;
+  line-height: 1;
+  text-shadow: 0 0 10px rgba(143, 52, 73, 0.16);
+}
+
+.birthday-message-card p {
+  margin: 0;
+  color: #2d1d1c;
+  font-family: Chiller, "Segoe Print", "Bradley Hand ITC", cursive;
+  font-size: clamp(18px, 1.7vw, 23px);
+  line-height: 1.23;
+}
+
+.komal-reply-box {
+  display: grid;
+  gap: 6px;
+  margin-top: 8px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(143, 52, 73, 0.3);
+  color: #8f3449;
+}
+
+.komal-reply-box span {
+  color: #8f3449;
+  font-family: var(--body-font);
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.komal-reply-box textarea {
+  min-height: 58px;
+  resize: vertical;
+  border: 1px solid rgba(143, 52, 73, 0.2);
+  border-radius: 6px;
+  padding: 8px;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.52) 0,
+      rgba(255, 255, 255, 0.52) 25px,
+      rgba(143, 52, 73, 0.12) 26px
+    );
+  color: #4a252b;
+  font-family: Chiller, "Segoe Print", cursive;
+  font-size: 18px;
+  line-height: 1.24;
+  outline: none;
+}
+
+.komal-reply-box textarea:focus {
+  border-color: rgba(143, 52, 73, 0.5);
+  box-shadow: 0 0 18px rgba(143, 52, 73, 0.18);
+}
+
+.message-delete-button {
+  top: 9px;
+  right: 9px;
+  z-index: 4;
+}
+
+@media (max-width: 560px) {
+  .birthday-messages {
+    columns: 1;
+    padding-inline: 14px;
+  }
+
+  .birthday-message-card {
+    width: 100%;
+    margin-bottom: 24px;
+  }
+}
+
+/* Final nav scale override */
+@media (max-width: 620px) {
+  .nav-links {
+    gap: 5px;
+    font-size: 8.5px;
+  }
+
+  .nav-links a {
+    min-height: 32px;
+    padding: 7px 4px;
+  }
+}
+
+@media (min-width: 621px) {
+  .nav-links {
+    font-size: 12px;
+  }
+
+  .nav-links a {
+    min-height: 42px;
+  }
+}
+
+/* Final proportional polish */
+.nav {
+  position: absolute;
+  border-color: rgba(244, 197, 111, 0.16);
+  background:
+    linear-gradient(150deg, rgba(255, 159, 184, 0.08), rgba(244, 197, 111, 0.055)),
+    rgba(22, 13, 16, 0.34);
+  box-shadow:
+    0 18px 48px rgba(0, 0, 0, 0.22),
+    0 0 28px rgba(244, 197, 111, 0.1),
+    inset 0 0 20px rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(20px);
+}
+
+.nav-links a,
+.admin-corner {
+  border-color: rgba(244, 197, 111, 0.18);
+  background:
+    linear-gradient(150deg, rgba(255, 159, 184, 0.1), rgba(244, 197, 111, 0.07)),
+    rgba(255, 255, 255, 0.035);
+  box-shadow:
+    inset 0 0 16px rgba(255, 255, 255, 0.035),
+    0 0 16px rgba(255, 159, 184, 0.08);
+}
+
+.nav-links a:hover,
+.admin-corner:hover {
+  border-color: rgba(244, 197, 111, 0.44);
+  background:
+    linear-gradient(150deg, rgba(255, 159, 184, 0.16), rgba(244, 197, 111, 0.12)),
+    rgba(255, 255, 255, 0.06);
+}
+
+.admin-corner {
+  position: absolute;
+}
+
+.birthday-messages {
+  width: min(1280px, 100%);
+  columns: 368px;
+  column-gap: 28px;
+}
+
+body.share-mode .birthday-messages {
+  width: min(620px, 100%);
+}
+
+.birthday-message-card {
+  width: min(100%, 368px);
+  margin-bottom: 32px;
+  padding: 18px 18px 24px;
+}
+
+.birthday-message-card h3 {
+  font-size: clamp(28px, 2.4vw, 36px);
+}
+
+.birthday-message-card p {
+  font-size: clamp(19px, 1.8vw, 26px);
+}
+
+.komal-reply-box {
+  margin-top: 10px;
+  gap: 8px;
+}
+
+.komal-reply-box textarea {
+  min-height: 62px;
+  font-size: 19px;
+}
+
+.komal-reply-send,
+.komal-reply-edit {
+  justify-self: center;
+  min-height: 32px;
+  border-color: rgba(143, 52, 73, 0.22);
+  border-radius: 999px;
+  padding: 6px 18px;
+  background:
+    linear-gradient(150deg, rgba(255, 159, 184, 0.22), rgba(244, 197, 111, 0.18)),
+    rgba(143, 52, 73, 0.08);
+  color: #8f3449;
+  font-family: var(--body-font);
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.komal-reply-display {
+  display: grid;
+  gap: 7px;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed rgba(143, 52, 73, 0.3);
+}
+
+.komal-reply-display span {
+  color: #8f3449;
+  font-family: var(--body-font);
+  font-size: 10px;
+  letter-spacing: 1.2px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.komal-reply-display p {
+  color: #8f3449;
+}
+
+.komal-reply-status {
+  min-height: 16px;
+  color: #8f3449;
+  font-family: var(--body-font);
+  font-size: 12px;
+  font-style: normal;
+}
+
+.admin-panel {
+  padding: clamp(34px, 7vh, 76px) 16px 28px;
+}
+
+.admin-panel.is-open {
+  align-content: start;
+}
+
+.admin-grid:has(.admin-auth-card:not([hidden])) {
+  width: min(460px, calc(100vw - 32px));
+}
+
+.admin-header:has(+ .admin-grid .admin-auth-card:not([hidden])) {
+  width: min(640px, calc(100vw - 32px));
+  margin-bottom: 20px;
+}
+
+.admin-header:has(+ .admin-grid .admin-auth-card:not([hidden])) .section-title {
+  font-size: clamp(38px, 5vw, 66px);
+  color: var(--gold-soft);
+}
+
+.admin-auth-card {
+  width: 100%;
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 34px);
+  border-color: rgba(244, 197, 111, 0.2);
+  background:
+    radial-gradient(circle at 22% 8%, rgba(255, 159, 184, 0.12), transparent 34%),
+    linear-gradient(150deg, rgba(255, 255, 255, 0.055), rgba(244, 197, 111, 0.025)),
+    rgba(18, 12, 14, 0.74);
+  box-shadow:
+    0 28px 80px rgba(0, 0, 0, 0.38),
+    0 0 32px rgba(244, 197, 111, 0.12),
+    inset 0 0 22px rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(20px);
+}
+
+.admin-auth-card h3 {
+  color: var(--rose);
+  font-size: clamp(28px, 4vw, 34px);
+}
+
+.admin-auth-card form {
+  gap: 16px;
+}
+
+.admin-auth-card input {
+  min-height: 58px;
+}
+
+@media (max-width: 620px) {
+  .birthday-messages {
+    columns: 1;
+  }
+
+  .birthday-message-card {
+    width: 100%;
+    padding: 16px 16px 22px;
+  }
+
+  .birthday-message-card h3 {
+    font-size: 30px;
+  }
+
+  .birthday-message-card p {
+    font-size: 22px;
+  }
+}
+
+/* Birthday headline glow */
+.hero [data-content="heroTitle"] {
+  color: #fff8fa;
+  text-shadow:
+    0 0 18px rgba(255, 255, 255, 0.42),
+    0 0 34px rgba(255, 159, 184, 0.58),
+    0 0 58px rgba(244, 197, 111, 0.34),
+    0 0 92px rgba(255, 159, 184, 0.22);
+  transition: color 0.22s ease, text-shadow 0.22s ease;
+}
+
+.hero [data-content="heroTitle"]:hover {
+  color: #fff;
+  text-shadow:
+    0 0 22px rgba(255, 255, 255, 0.62),
+    0 0 42px rgba(255, 159, 184, 0.72),
+    0 0 72px rgba(244, 197, 111, 0.48),
+    0 0 110px rgba(255, 159, 184, 0.3);
+}
+
+/* Refined message typography and protected-page subheadings */
+.birthday-message-card > .birthday-message-body {
+  gap: 6px;
+  padding-top: 12px;
+}
+
+.birthday-message-card h3 {
+  font-size: clamp(23px, 1.8vw, 30px);
+  line-height: 0.95;
+}
+
+.birthday-message-card p {
+  font-family: "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: clamp(13px, 1.05vw, 16px);
+  line-height: 1.42;
+}
+
+.komal-reply-display p {
+  font-size: clamp(13px, 1vw, 16px);
+}
+
+.public-page .protected-content {
+  width: min(1180px, 100%);
+  justify-items: center;
+}
+
+.protected-content [data-content="storyTitle"],
+.protected-content [data-content="birthdayTitle"] {
+  width: min(1120px, calc(100vw - 32px));
+  max-width: none;
+  margin: 0 auto 16px;
+  padding: 0 10px 10px;
+  border-bottom: 1px solid rgba(255, 159, 184, 0.34);
+  font-family: var(--body-font);
+  font-size: clamp(18px, 2.5vw, 32px);
+  line-height: 1.25;
+  text-align: left;
+  white-space: normal;
+}
+
+.protected-content [data-content="storyTitle"]::before,
+.protected-content [data-content="birthdayTitle"]::before {
+  content: "";
+  display: inline-block;
+  width: clamp(34px, 7vw, 90px);
+  height: 1px;
+  margin-right: 12px;
+  vertical-align: middle;
+  background: linear-gradient(90deg, rgba(244, 197, 111, 0.2), rgba(255, 159, 184, 0.78));
+  box-shadow: 0 0 16px rgba(255, 159, 184, 0.34);
+}
+
+@media (max-width: 620px) {
+  .birthday-message-card p {
+    font-size: 15px;
+  }
+
+  .protected-content [data-content="storyTitle"],
+  .protected-content [data-content="birthdayTitle"] {
+    font-size: clamp(17px, 5vw, 24px);
+    text-align: center;
+  }
+
+  .protected-content [data-content="storyTitle"]::before,
+  .protected-content [data-content="birthdayTitle"]::before {
+    display: block;
+    width: 72px;
+    margin: 0 auto 8px;
+  }
+}
+
+/* Exact half-size postcard override */
+.birthday-messages {
+  width: min(1180px, 100%);
+  columns: 184px;
+  column-gap: 18px;
+  margin-top: 24px;
+}
+
+body.share-mode .birthday-messages {
+  width: min(360px, 100%);
+}
+
+.birthday-message-card {
+  width: min(100%, 184px);
+  margin-bottom: 18px;
+  padding: 9px 9px 12px;
+  border-radius: 4px;
+}
+
+.birthday-message-card::before {
+  top: -6px;
+  width: 42px;
+  height: 13px;
+}
+
+.birthday-message-card > .birthday-message-body {
+  gap: 4px;
+  padding-top: 7px;
+}
+
+.birthday-message-card h3 {
+  font-size: clamp(16px, 1.4vw, 20px);
+}
+
+.birthday-message-card p {
+  font-size: clamp(9px, 0.9vw, 12px);
+  line-height: 1.28;
+}
+
+.komal-reply-box,
+.komal-reply-display {
+  gap: 4px;
+  margin-top: 6px;
+  padding-top: 6px;
+}
+
+.komal-reply-box span,
+.komal-reply-display span {
+  font-size: 7px;
+  letter-spacing: 0.8px;
+}
+
+.komal-reply-box textarea {
+  min-height: 38px;
+  padding: 5px;
+  font-size: 11px;
+}
+
+.komal-reply-send,
+.komal-reply-edit {
+  min-height: 24px;
+  padding: 4px 10px;
+  font-size: 8px;
+}
+
+.komal-reply-display p {
+  font-size: clamp(9px, 0.9vw, 12px);
+}
+
+.message-delete-button {
+  top: 4px;
+  right: 4px;
+  min-height: 22px;
+  padding: 3px 6px;
+  font-size: 8px;
+}
+
+.message-delete-button span {
+  font-size: 13px;
+}
+
+@media (max-width: 620px) {
+  .birthday-messages {
+    columns: 2 150px;
+    column-gap: 12px;
+    padding-inline: 8px;
+  }
+
+  .birthday-message-card {
+    width: min(100%, 165px);
+    padding: 8px 8px 11px;
+  }
+}
+
+/* Keep postcard width, shorten the message length */
+.birthday-messages {
+  width: min(1280px, 100%);
+  columns: 368px;
+  column-gap: 26px;
+}
+
+body.share-mode .birthday-messages {
+  width: min(620px, 100%);
+}
+
+.birthday-message-card {
+  width: min(100%, 368px);
+  margin-bottom: 24px;
+  padding: 14px 14px 18px;
+}
+
+.birthday-message-card::before {
+  top: -8px;
+  width: 64px;
+  height: 18px;
+}
+
+.birthday-message-card > .birthday-message-body {
+  gap: 5px;
+  padding-top: 9px;
+}
+
+.birthday-message-card h3 {
+  font-size: clamp(22px, 1.8vw, 28px);
+}
+
+.birthday-message-card p,
+.komal-reply-display p {
+  font-size: clamp(11px, 0.95vw, 14px);
+  line-height: 1.24;
+}
+
+.komal-reply-box,
+.komal-reply-display {
+  margin-top: 7px;
+  padding-top: 7px;
+}
+
+.protected-content [data-content="storyTitle"],
+.protected-content [data-content="birthdayTitle"] {
+  font-family: var(--display-font);
+}
+
+@media (max-width: 620px) {
+  .birthday-messages {
+    columns: 1;
+  }
+
+  .birthday-message-card {
+    width: 100%;
+    padding: 12px 12px 16px;
+  }
+
+  .birthday-message-card p,
+  .komal-reply-display p {
+    font-size: 13px;
+  }
+}
+
+/* Final always-on tagline glow */
+.hero [data-content="heroTagline"],
+.public-page [data-content="storyTitle"],
+.public-page [data-content="vaultTitle"],
+.public-page [data-content="galleryTitle"],
+.public-page [data-content="notesTitle"],
+.public-page [data-content="guestbookTitle"],
+.public-page [data-content="birthdayTitle"] {
+  color: #fff8fa;
+  text-shadow:
+    0 0 16px rgba(255, 255, 255, 0.42),
+    0 0 30px rgba(255, 159, 184, 0.62),
+    0 0 52px rgba(244, 197, 111, 0.38),
+    0 0 78px rgba(255, 159, 184, 0.24);
+  text-decoration-color: rgba(244, 197, 111, 0.95);
+}
+
+.komal-reply-actions {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.komal-reply-delete {
+  justify-self: center;
+  min-height: 24px;
+  border-color: rgba(143, 52, 73, 0.24);
+  border-radius: 999px;
+  padding: 4px 10px;
+  background: rgba(143, 52, 73, 0.08);
+  color: #8f3449;
+  font-family: var(--body-font);
+  font-size: 8px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Final unified tagline styling */
+.hero [data-content="heroTagline"],
+.public-page [data-content="storyTitle"],
+.public-page [data-content="vaultTitle"],
+.public-page [data-content="galleryTitle"],
+.public-page [data-content="notesTitle"],
+.public-page [data-content="guestbookTitle"],
+.public-page [data-content="birthdayTitle"] {
+  width: min(920px, calc(100vw - 32px));
+  max-width: min(920px, calc(100vw - 32px));
+  margin: 14px auto 0;
+  padding: 0;
+  border: 0;
+  color: #fff8fa;
+  font-family: var(--display-font);
+  font-size: clamp(18px, 3.1vw, 26px);
+  line-height: 1.42;
+  text-align: center;
+  text-decoration: none;
+  white-space: normal;
+  text-shadow:
+    0 0 16px rgba(255, 255, 255, 0.42),
+    0 0 30px rgba(255, 159, 184, 0.62),
+    0 0 52px rgba(244, 197, 111, 0.38),
+    0 0 78px rgba(255, 159, 184, 0.24);
+}
+
+.protected-content [data-content="storyTitle"]::before,
+.protected-content [data-content="birthdayTitle"]::before {
+  content: none;
+}
+
+/* Final prominent page subheading taglines */
+.hero [data-content="heroTagline"],
+.public-page [data-content="storyTitle"],
+.public-page [data-content="vaultTitle"],
+.public-page [data-content="galleryTitle"],
+.public-page [data-content="notesTitle"],
+.public-page [data-content="guestbookTitle"],
+.public-page [data-content="birthdayTitle"] {
+  width: min(1040px, calc(100vw - 32px));
+  max-width: min(1040px, calc(100vw - 32px));
+  margin: 18px auto 0;
+  padding: 0 8px 8px;
+  border: 0;
+  color: #fff8fa;
+  font-family: var(--display-font);
+  font-size: clamp(28px, 4.8vw, 54px);
+  line-height: 1.08;
+  text-align: center;
+  text-decoration-line: underline;
+  text-decoration-color: rgba(244, 197, 111, 0.92);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 0.16em;
+  text-shadow:
+    0 0 18px rgba(255, 255, 255, 0.42),
+    0 0 34px rgba(255, 159, 184, 0.64),
+    0 0 58px rgba(244, 197, 111, 0.4),
+    0 0 84px rgba(255, 159, 184, 0.26);
+}
+
+/* Final three-column message layout */
+.birthday-messages {
+  width: min(1120px, 100%);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  columns: auto;
+  margin-top: 26px;
+}
+
+body.share-mode .birthday-messages {
+  width: min(1120px, 100%);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.birthday-message-card {
+  width: 100%;
+  display: block;
+  margin: 0;
+  justify-self: stretch;
+}
+
+@media (max-width: 860px) {
+  .birthday-messages,
+  body.share-mode .birthday-messages {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .birthday-messages,
+  body.share-mode .birthday-messages {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .birthday-message-card {
+    padding: 8px 8px 11px;
+  }
+}
+
+/* Active page indicator */
+.nav-links a.is-active,
+.nav-links a[aria-current="page"] {
+  border-color: rgba(244, 197, 111, 0.72);
+  background:
+    linear-gradient(150deg, rgba(255, 159, 184, 0.3), rgba(244, 197, 111, 0.2)),
+    rgba(8, 4, 6, 0.5);
+  color: #fff8fa;
+  box-shadow:
+    inset 0 0 28px rgba(244, 197, 111, 0.24),
+    0 0 26px rgba(255, 159, 184, 0.34),
+    0 0 34px rgba(244, 197, 111, 0.22);
+}
+
+/* Phone fit pass */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+@media (max-width: 620px) {
+  body {
+    min-width: 0;
+  }
+
+  main,
+  section,
+  .hero-inner,
+  .protected-content,
+  .admin-grid,
+  .admin-content,
+  .admin-workspace,
+  .admin-panels,
+  .admin-form,
+  .public-message-composer,
+  .protected-password-form,
+  .admin-auth-card {
+    max-width: 100%;
+  }
+
+  section {
+    width: min(100%, calc(100vw - 18px));
+    padding: 34px 0;
+  }
+
+  .nav {
+    top: 8px;
+    width: calc(100vw - 58px);
+    max-width: calc(100vw - 58px);
+    padding: 5px;
+    border-radius: 18px;
+  }
+
+  .nav-links {
+    width: 100%;
+    gap: 3px;
+    font-size: clamp(6.4px, 1.85vw, 8px);
+    line-height: 1;
+  }
+
+  .nav-links a {
+    min-width: 0;
+    min-height: 28px;
+    padding: 5px 2px;
+    letter-spacing: 0.2px;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .admin-corner {
+    top: 8px;
+    right: 6px;
+    min-height: 30px;
+    max-width: 48px;
+    padding: 5px 7px;
+    font-size: 8px;
+    letter-spacing: 0.3px;
+  }
+
+  .hero {
+    min-height: 100svh;
+    padding: 56px 10px 12px;
+    align-items: center;
+  }
+
+  h1,
+  .hero [data-content="heroTitle"] {
+    max-width: calc(100vw - 20px);
+    font-size: clamp(23px, 9vw, 35px);
+    line-height: 0.95;
+    white-space: nowrap;
+    letter-spacing: 0;
+  }
+
+  .birthday-graphic {
+    width: min(112px, 28vw);
+    margin: 8px auto 0;
+  }
+
+  .love-gift {
+    width: 96px;
+    height: 90px;
+    transform: scale(0.72);
+    transform-origin: center;
+  }
+
+  .countdown {
+    width: min(100%, 342px);
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+    margin-top: 6px;
+  }
+
+  .time-card {
+    min-height: 58px;
+    padding: 8px 3px;
+    border-radius: 13px;
+  }
+
+  .time-card strong {
+    font-size: clamp(23px, 8vw, 32px);
+    line-height: 0.88;
+  }
+
+  .time-card span {
+    font-size: clamp(6.5px, 1.8vw, 8px);
+    letter-spacing: 0.7px;
+  }
+
+  .hero [data-content="heroTagline"],
+  .public-page [data-content="storyTitle"],
+  .public-page [data-content="vaultTitle"],
+  .public-page [data-content="galleryTitle"],
+  .public-page [data-content="notesTitle"],
+  .public-page [data-content="guestbookTitle"],
+  .public-page [data-content="birthdayTitle"] {
+    width: min(100%, calc(100vw - 24px));
+    max-width: calc(100vw - 24px);
+    margin-top: 10px;
+    padding-inline: 4px;
+    font-size: clamp(18px, 7vw, 27px);
+    line-height: 1.05;
+    overflow-wrap: anywhere;
+  }
+
+  .hero [data-content="heroTagline"] {
+    font-size: clamp(14px, 4.7vw, 20px);
+    line-height: 1.18;
+  }
+
+  .public-page {
+    width: min(100%, calc(100vw - 18px));
+    min-height: 100svh;
+    padding-top: 58px;
+    place-items: start center;
+  }
+
+  .protected-lock,
+  .protected-content {
+    width: 100%;
+  }
+
+  .protected-password-form,
+  .public-message-composer {
+    width: min(100%, calc(100vw - 22px));
+    padding: 12px;
+    border-radius: 15px;
+  }
+
+  input,
+  textarea,
+  select,
+  button,
+  .btn {
+    max-width: 100%;
+    font-size: 14px;
+  }
+
+  .temp-message-link {
+    max-width: calc(100vw - 42px);
+    min-height: 32px;
+    padding: 7px 12px;
+    font-size: 9px;
+    letter-spacing: 0.7px;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .birthday-messages,
+  body.share-mode .birthday-messages {
+    width: min(100%, calc(100vw - 16px));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 18px;
+    padding-inline: 0;
+  }
+
+  .birthday-message-card {
+    min-width: 0;
+    padding: 7px 7px 10px;
+  }
+
+  .birthday-message-card h3 {
+    font-size: clamp(15px, 5vw, 20px);
+  }
+
+  .birthday-message-card p,
+  .komal-reply-display p {
+    font-size: clamp(9px, 3.2vw, 12px);
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+  }
+
+  .komal-reply-box textarea {
+    min-height: 34px;
+    font-size: 11px;
+  }
+
+  .admin-panel {
+    width: 100%;
+    min-height: 100svh;
+    padding: 18px 9px 22px;
+  }
+
+  .admin-header,
+  .admin-grid,
+  .admin-session,
+  .admin-content.glass {
+    width: min(100%, calc(100vw - 18px));
+  }
+
+  .admin-header .section-title,
+  .admin-header:has(+ .admin-grid .admin-auth-card:not([hidden])) .section-title {
+    font-size: clamp(30px, 11vw, 42px);
+    line-height: 0.96;
+  }
+
+  .admin-auth-card {
+    padding: 18px 14px;
+    border-radius: 18px;
+  }
+
+  .admin-auth-card input {
+    min-height: 48px;
+  }
+
+  .admin-session {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .admin-tabs {
+    width: 100%;
+    gap: 8px;
+  }
+
+  .admin-tab {
+    width: 100%;
+    min-height: 42px;
+    padding: 10px 14px;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  .admin-tabs .admin-form {
+    width: 100%;
+    padding: 14px 12px;
+    border-radius: 14px;
+  }
+}
+
+@media (max-width: 380px) {
+  .nav {
+    width: calc(100vw - 52px);
+    max-width: calc(100vw - 52px);
+  }
+
+  .nav-links {
+    font-size: clamp(5.8px, 1.7vw, 6.8px);
+  }
+
+  .nav-links a {
+    min-height: 26px;
+    padding-inline: 1px;
+  }
+
+  .admin-corner {
+    max-width: 44px;
+    padding-inline: 5px;
+    font-size: 7px;
+  }
+
+  h1,
+  .hero [data-content="heroTitle"] {
+    font-size: clamp(21px, 8.4vw, 30px);
+  }
+
+  .countdown {
+    gap: 4px;
+  }
+
+  .time-card {
+    min-height: 52px;
+  }
+
+  .time-card strong {
+    font-size: clamp(20px, 7.4vw, 28px);
+  }
+}
+
+  </style>
+</head>
+
+<body>
+  <nav class="nav" aria-label="Primary navigation">
+    <div class="nav-links">
+      <a href="#home" data-content="navHome">Home</a>
+      <a href="#guestbook" data-content="navGuestbook">Letters to Komal</a>
+      <a href="#vault" data-content="navVault">Memory Vault</a>
+      <a href="#story" data-content="navStory">Our Story</a>
+      <a href="#birthday" data-content="navKv">KV57</a>
+    </div>
+  </nav>
+  <button id="adminOpenBtn" class="admin-corner" type="button">Admin</button>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-inner">
+        <h1 data-content="heroTitle">HAPPY BIRTHDAY LOVE!</h1>
+
+        <div class="birthday-graphic" aria-hidden="true">
+          <div class="hero-love-graphics">
+            <div class="love-note-card">
+              <span></span>
+            </div>
+            <div class="love-charm charm-one"></div>
+            <div class="love-charm charm-two"></div>
+            <div class="love-charm charm-three"></div>
+          </div>
+          <div class="love-gift">
+            <div class="heart-burst heart-left"></div>
+            <div class="heart-burst heart-right"></div>
+            <div class="gift-lid"></div>
+            <div class="gift-box">
+              <span></span>
+            </div>
+            <div class="gift-ribbon"></div>
+          </div>
+          <div class="graphic-ring ring-one"></div>
+          <div class="graphic-ring ring-two"></div>
+        </div>
+
+        <div class="countdown" id="countdown" aria-live="polite">
+          <div class="time-card"><strong id="countDays">00</strong><span>Days</span></div>
+          <div class="time-card"><strong id="countHours">00</strong><span>Hours</span></div>
+          <div class="time-card"><strong id="countMinutes">00</strong><span>Minutes</span></div>
+          <div class="time-card"><strong id="countSeconds">00</strong><span>Seconds</span></div>
+        </div>
+
+        <p class="hero-copy" data-content="heroTagline">A forever kind of love, wrapped in one golden birthday night.</p>
+      </div>
+    </section>
+
+    <section id="story" class="landing-heading public-page">
+      <div class="protected-lock" id="storyLock">
+        <h2 class="section-title" data-content="navStory">Our Story</h2>
+        <form id="storyPasswordForm" class="protected-password-form">
+          <input id="storyPasswordInput" type="password" placeholder="Enter Our Story password" autocomplete="current-password" required />
+          <button class="btn primary" type="submit">Unlock</button>
+          <p class="status" id="storyPasswordStatus"></p>
+        </form>
+      </div>
+      <div class="protected-content" id="storyContent" hidden>
+        <h2 class="section-title" data-content="storyTitle">Every chapter became softer with you.</h2>
+        <a class="temp-message-link" href="#add-story" data-content="storyAddMessageText">Add an Our Story message</a>
+        <div class="public-message-composer" data-public-composer="story" data-message-page="story" hidden>
+          <h3>Our Story Message</h3>
+          <input type="text" data-message-from placeholder="Your name" />
+          <textarea data-message-text placeholder="Write your birthday message"></textarea>
+          <input type="file" accept="image/*,video/*" data-message-media />
+          <button class="btn primary" type="button" data-message-save>Post Message</button>
+          <p class="status"></p>
+        </div>
+        <div class="birthday-messages" data-message-list="story"></div>
+      </div>
+    </section>
+
+    <section id="vault" class="landing-heading public-page">
+      <h2 class="section-title" data-content="vaultTitle">A place for moments worth keeping.</h2>
+      <a class="temp-message-link" href="#add-vault" data-content="vaultAddMessageText">Add a Memory Vault message</a>
+      <div class="public-message-composer" data-public-composer="vault" data-message-page="vault" hidden>
+        <h3>Memory Vault Message</h3>
+        <input type="text" data-message-from placeholder="Your name" />
+        <textarea data-message-text placeholder="Write your birthday message"></textarea>
+        <input type="file" accept="image/*,video/*" data-message-media />
+        <button class="btn primary" type="button" data-message-save>Post Message</button>
+        <p class="status"></p>
+      </div>
+      <div class="birthday-messages" data-message-list="vault"></div>
+    </section>
+
+    <section id="gallery" class="landing-heading public-page">
+      <h2 class="section-title" data-content="galleryTitle">Our favorite frames, ready for Firebase Storage.</h2>
+      <a class="temp-message-link" href="#add-gallery">Add a Gallery message</a>
+      <div class="public-message-composer" data-public-composer="gallery" data-message-page="gallery" hidden>
+        <h3>Gallery Message</h3>
+        <input type="text" data-message-from placeholder="Your name" />
+        <textarea data-message-text placeholder="Write your birthday message"></textarea>
+        <input type="file" accept="image/*,video/*" data-message-media />
+        <button class="btn primary" type="button" data-message-save>Post Message</button>
+        <p class="status"></p>
+      </div>
+      <div class="birthday-messages" data-message-list="gallery"></div>
+    </section>
+
+    <section id="guestbook" class="landing-heading public-page">
+      <h2 class="section-title" data-content="guestbookTitle">Letters to Komal.</h2>
+      <a class="temp-message-link" href="#add-guestbook" data-content="guestbookAddMessageText">Add a Letter to Komal</a>
+      <div class="public-message-composer" data-public-composer="guestbook" data-message-page="guestbook" hidden>
+        <h3>Letter to Komal</h3>
+        <input type="text" data-message-from placeholder="Your name" />
+        <textarea data-message-text placeholder="Write your birthday message"></textarea>
+        <input type="file" accept="image/*,video/*" data-message-media />
+        <button class="btn primary" type="button" data-message-save>Post Message</button>
+        <p class="status"></p>
+      </div>
+      <div class="birthday-messages" data-message-list="guestbook"></div>
+    </section>
+
+    <section id="birthday" class="landing-heading public-page">
+      <div class="protected-lock" id="kvLock">
+        <h2 class="section-title" data-content="navKv">KV57</h2>
+        <form id="kvPasswordForm" class="protected-password-form">
+          <input id="kvPasswordInput" type="password" placeholder="Enter KV57 password" autocomplete="current-password" required />
+          <button class="btn primary" type="submit">Unlock</button>
+          <p class="status" id="kvPasswordStatus"></p>
+        </form>
+      </div>
+      <div class="protected-content" id="kvContent" hidden>
+        <h2 class="section-title" data-content="birthdayTitle">Happy Birthday, Komal!</h2>
+        <a class="temp-message-link" href="#add-kv" data-content="birthdayAddMessageText">Add a KV57 message</a>
+        <div class="public-message-composer" data-public-composer="kv" data-message-page="kv" hidden>
+          <h3>KV57 Message</h3>
+          <input type="text" data-message-from placeholder="Your name" />
+          <textarea data-message-text placeholder="Write your birthday message"></textarea>
+          <input type="file" accept="image/*,video/*" data-message-media />
+          <button class="btn primary" type="button" data-message-save>Post Message</button>
+          <p class="status"></p>
+        </div>
+        <div class="birthday-messages" data-message-list="kv"></div>
+      </div>
+    </section>
+
+    <section id="admin" class="admin-panel" aria-hidden="true" aria-label="Hidden admin panel">
+      <div class="admin-header">
+        <div>
+          <h2 class="section-title">ADMIN PANEL</h2>
+        </div>
+      </div>
+
+      <div class="admin-grid">
+        <div class="glass admin-auth-card" id="adminAuthCard">
+          <h3>Admin Sign In</h3>
+          <form id="adminLoginForm">
+            <input id="adminUsername" type="text" placeholder="Username" autocomplete="username" required />
+            <input id="adminPassword" type="password" placeholder="Password" autocomplete="current-password" required />
+            <button class="btn primary" type="submit">Sign In</button>
+          </form>
+          <p class="status" id="adminAuthStatus"></p>
+        </div>
+
+        <div class="glass admin-content" id="adminContent" hidden>
+          <div class="admin-session">
+            <span id="adminUserLabel">Signed in as ADMIN</span>
+            <button id="adminLogoutBtn" class="btn subtle" type="button">Sign Out</button>
+          </div>
+
+          <div class="admin-workspace">
+            <div class="admin-tabs" aria-label="Admin sections">
+              <button class="admin-tab" type="button" data-admin-tab="homeAdmin" data-content="navHome">Home</button>
+              <button class="admin-tab" type="button" data-admin-tab="guestbookAdmin" data-content="navGuestbook">Letters to Komal</button>
+              <button class="admin-tab" type="button" data-admin-tab="memoryAdmin" data-content="navVault">Memory Vault</button>
+              <button class="admin-tab" type="button" data-admin-tab="storyAdmin" data-content="navStory">Our Story</button>
+              <button class="admin-tab" type="button" data-admin-tab="kvAdmin" data-content="navKv">KV57</button>
+              <button class="admin-tab" type="button" data-admin-tab="adminSettings">Admin Settings</button>
+            </div>
+
+            <div class="admin-panels">
+              <form id="pageSettingsForm" class="admin-form" data-admin-panel="homeAdmin" hidden>
+                <h3>Home</h3>
+                <label>Page name<input type="text" data-setting-input="navHome" /></label>
+                <label>Birthday headline<input type="text" data-setting-input="heroTitle" /></label>
+                <label>Landing tagline<textarea data-setting-input="heroTagline"></textarea></label>
+                <label>Home picture<input type="file" accept="image/*" data-image-input="homeImage" /></label>
+                <button class="btn primary" type="submit">Save Home</button>
+                <p class="status" id="pageSettingsStatus"></p>
+              </form>
+
+              <form id="storyForm" class="admin-form" data-admin-panel="storyAdmin" hidden>
+                <h3>Our Story</h3>
+                <a class="share-message-link" data-share-target="add-story" href="#add-story">Copy/share Our Story message link</a>
+                <label>Page name<input type="text" data-setting-input="navStory" /></label>
+                <label>Our Story tagline<input type="text" data-setting-input="storyTitle" /></label>
+                <label>Add message button text<input type="text" data-setting-input="storyAddMessageText" /></label>
+                <label>Our Story password<input id="storyAdminPassword" type="text" placeholder="Our Story password" required /></label>
+                <label>Our Story picture<input type="file" accept="image/*" data-image-input="storyImage" /></label>
+                <input id="storyChapter" type="text" placeholder="Chapter label (optional)" />
+                <input id="storyTitleInput" type="text" placeholder="Story title (optional)" />
+                <textarea id="storyDescription" placeholder="Story description (optional)"></textarea>
+                <div class="message-composer" data-message-page="story">
+                  <h4>Birthday Message</h4>
+                  <input type="text" data-message-from placeholder="From" />
+                  <textarea data-message-text placeholder="Birthday message"></textarea>
+                  <input type="file" accept="image/*,video/*" data-message-media />
+                  <button class="btn primary" type="button" data-message-save>Post Message</button>
+                </div>
+                <button class="btn primary" type="submit">Save Our Story</button>
+                <p class="status" id="storyStatus"></p>
+              </form>
+
+              <form id="memoryForm" class="admin-form" data-admin-panel="memoryAdmin" hidden>
+                <h3>Memory Vault</h3>
+                <a class="share-message-link" data-share-target="add-vault" href="#add-vault">Copy/share Memory Vault message link</a>
+                <label>Page name<input type="text" data-setting-input="navVault" /></label>
+                <label>Memory Vault tagline<input type="text" data-setting-input="vaultTitle" /></label>
+                <label>Add message button text<input type="text" data-setting-input="vaultAddMessageText" /></label>
+                <label>Memory Vault picture<input type="file" accept="image/*" data-image-input="vaultImage" /></label>
+                <input id="memoryTitle" type="text" placeholder="Memory title" required />
+                <input id="memoryDate" type="text" placeholder="Date or chapter label" />
+                <textarea id="memoryDescription" placeholder="What happened in this memory?" required></textarea>
+                <div class="message-composer" data-message-page="vault">
+                  <h4>Birthday Message</h4>
+                  <input type="text" data-message-from placeholder="From" />
+                  <textarea data-message-text placeholder="Birthday message"></textarea>
+                  <input type="file" accept="image/*,video/*" data-message-media />
+                  <button class="btn primary" type="button" data-message-save>Post Message</button>
+                </div>
+                <button class="btn primary" type="submit">Save Memory Vault</button>
+                <p class="status" id="memoryStatus"></p>
+              </form>
+
+              <form id="guestbookForm" class="admin-form" data-admin-panel="guestbookAdmin" hidden>
+                <h3>Letters to Komal</h3>
+                <a class="share-message-link" data-share-target="add-guestbook" href="#add-guestbook">Copy/share Letters to Komal link</a>
+                <label>Page name<input type="text" data-setting-input="navGuestbook" /></label>
+                <label>Letters tagline<input type="text" data-setting-input="guestbookTitle" /></label>
+                <label>Add message button text<input type="text" data-setting-input="guestbookAddMessageText" /></label>
+                <label>Letters picture<input type="file" accept="image/*" data-image-input="guestbookImage" /></label>
+                <input id="guestName" type="text" placeholder="Sender name" value="Komal" required />
+                <textarea id="guestMessage" placeholder="Letter message" required></textarea>
+                <div class="message-composer" data-message-page="guestbook">
+                  <h4>Letter to Komal</h4>
+                  <input type="text" data-message-from placeholder="From" />
+                  <textarea data-message-text placeholder="Letter message"></textarea>
+                  <input type="file" accept="image/*,video/*" data-message-media />
+                  <button class="btn primary" type="button" data-message-save>Post Message</button>
+                </div>
+                <button class="btn primary" type="submit">Save Letters</button>
+                <p class="status" id="guestStatus"></p>
+              </form>
+
+              <form id="kvSettingsForm" class="admin-form" data-admin-panel="kvAdmin" hidden>
+                <h3>KV57</h3>
+                <a class="share-message-link" data-share-target="add-kv" href="#add-kv">Copy/share KV57 message link</a>
+                <label>Page name<input type="text" data-setting-input="navKv" /></label>
+                <label>KV57 tagline<input type="text" data-setting-input="birthdayTitle" /></label>
+                <label>Add message button text<input type="text" data-setting-input="birthdayAddMessageText" /></label>
+                <label>KV57 picture<input type="file" accept="image/*" data-image-input="kvImage" /></label>
+                <label>KV57 password<input id="kvAdminPassword" type="text" placeholder="KV57 password" required /></label>
+                <div class="message-composer" data-message-page="kv">
+                  <h4>Birthday Message</h4>
+                  <input type="text" data-message-from placeholder="From" />
+                  <textarea data-message-text placeholder="Birthday message"></textarea>
+                  <input type="file" accept="image/*,video/*" data-message-media />
+                  <button class="btn primary" type="button" data-message-save>Post Message</button>
+                </div>
+                <button class="btn primary" type="submit">Save KV57</button>
+                <p class="status" id="kvAdminStatus"></p>
+              </form>
+
+              <form id="adminSettingsForm" class="admin-form" data-admin-panel="adminSettings" hidden>
+                <h3>Admin Settings</h3>
+                <label>Current admin password<input id="currentAdminPassword" type="password" placeholder="Current password" autocomplete="current-password" /></label>
+                <label>New username<input id="newAdminUsername" type="text" placeholder="New username" autocomplete="username" /></label>
+                <label>New password<input id="newAdminPassword" type="password" placeholder="New password" autocomplete="new-password" /></label>
+                <label>Confirm new password<input id="confirmAdminPassword" type="password" placeholder="Confirm new password" autocomplete="new-password" /></label>
+                <label>Watermark picture<input type="file" accept="image/*" data-image-input="watermarkImage" /></label>
+                <label>Soft melody song<input type="file" accept="audio/*" data-audio-input="backgroundSong" /></label>
+                <button class="btn primary" type="button" id="saveAdminCredentialsBtn">Save Admin Login</button>
+                <button class="btn subtle" type="button" id="resetPageSettingsBtn">Reset Page Content</button>
+                <p class="status" id="adminSettingsStatus"></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  doc,
+  getDoc,
+  getDocs,
+  onSnapshot,
+  deleteDoc,
+  setDoc,
+  query,
+  orderBy,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-storage.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBMqPt8do6xF8SvgTl6TOfLV-EmnA8QBeE",
+  authDomain: "kbd26-3a46c.firebaseapp.com",
+  projectId: "kbd26-3a46c",
+  storageBucket: "kbd26-3a46c.firebasestorage.app",
+  messagingSenderId: "478130468991",
+  appId: "1:478130468991:web:96b8be74feb7858a65674a",
+  measurementId: "G-ZK2BX6BBLM"
+};
+
+const firebaseApp = initializeApp(firebaseConfig);
+const auth = getAuth(firebaseApp);
+const db = getFirestore(firebaseApp);
+const storage = getStorage(firebaseApp);
+const FirebaseServices = {
+  auth,
+  db,
+  storage,
+  collection,
+  addDoc,
+  doc,
+  getDoc,
+  getDocs,
+  onSnapshot,
+  deleteDoc,
+  setDoc,
+  query,
+  orderBy,
+  serverTimestamp,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+  ref,
+  uploadBytes,
+  getDownloadURL
+};
+window.FirebaseServices = FirebaseServices;
+
+/* utils.js */
+
+function escapeHTML(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+
+
+/* notes.js */
+
+const backupNotes = [
+  "I am proud of you. Always.",
+  "You looked beautiful that day. You know exactly which day I mean.",
+  "I hope you know how deeply loved you are.",
+  "I cannot wait to marry you.",
+  "Your smile still does something to me.",
+  "You are my calm place.",
+  "I love the way you make people feel at home.",
+  "You are more beautiful than you allow yourself to believe.",
+  "One day, we will show this website to our future selves and smile.",
+  "No matter where life takes us, I want my hand in yours."
+];
+
+let firebaseNotes = [];
+
+async function loadNotes() {
+  const noteStatus = document.getElementById("noteStatus");
+
+  try {
+    const notesQuery = query(collection(db, "loveNotes"), orderBy("createdAt", "desc"));
+    const snapshot = await getDocs(notesQuery);
+
+    firebaseNotes = snapshot.docs
+      .map((doc) => doc.data().message)
+      .filter(Boolean);
+
+    if (noteStatus) {
+      noteStatus.textContent = firebaseNotes.length
+        ? `${firebaseNotes.length} love notes loaded.`
+        : "Backup notes are ready until Firebase has notes.";
+    }
+  } catch (error) {
+    if (noteStatus) {
+      noteStatus.textContent = "Firebase notes could not load. Backup notes are active.";
+    }
+
+    console.error(error);
+  }
+}
+
+function showNote() {
+  const box = document.getElementById("randomNote");
+  if (!box) return;
+
+  const allNotes = firebaseNotes.length ? firebaseNotes : backupNotes;
+  const note = allNotes[Math.floor(Math.random() * allNotes.length)];
+
+  box.style.opacity = 0;
+
+  setTimeout(() => {
+    box.textContent = note;
+    box.style.opacity = 1;
+  }, 220);
+}
+
+function setupNoteForm() {
+  const form = document.getElementById("noteForm");
+  const messageInput = document.getElementById("noteMessage");
+  const status = document.getElementById("saveNoteStatus");
+
+  if (!form || !messageInput || !status) return;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const message = messageInput.value.trim();
+    if (!message) return;
+
+    status.textContent = "Saving note...";
+
+    try {
+      await addDoc(collection(db, "loveNotes"), {
+        message,
+        createdAt: serverTimestamp()
+      });
+
+      messageInput.value = "";
+      status.textContent = "Saved to Firebase.";
+
+      await loadNotes();
+    } catch (error) {
+      status.textContent = "Could not save. Check Firestore rules and admin permissions.";
+      console.error(error);
+    }
+  });
+}
+
+function setupShowNoteButton() {
+  const button = document.getElementById("showNoteBtn");
+  if (!button) return;
+
+  button.addEventListener("click", showNote);
+}
+
+
+
+/* guestbook.js */
+
+async function loadGuestbook() {
+  const list = document.getElementById("guestbookList");
+  if (!list) return;
+
+  list.innerHTML = "";
+
+  try {
+    const guestbookQuery = query(
+      collection(db, "guestbook"),
+      orderBy("createdAt", "desc")
+    );
+
+    const snapshot = await getDocs(guestbookQuery);
+
+    if (snapshot.empty) {
+      list.innerHTML = `
+        <div class="data-card">
+          <h3>No messages yet</h3>
+          <p>Komal can be the first one to write here.</p>
+        </div>
+      `;
+      return;
+    }
+
+    snapshot.forEach((doc) => {
+      const data = doc.data();
+      const card = document.createElement("article");
+
+      card.className = "data-card";
+      card.innerHTML = `
+        <h3>${escapeHTML(data.name || "Someone special")}</h3>
+        <p>${escapeHTML(data.message || "")}</p>
+      `;
+
+      list.appendChild(card);
+    });
+  } catch (error) {
+    list.innerHTML = `
+      <div class="data-card">
+        <h3>Could not load messages</h3>
+        <p>Check Firestore rules if this continues.</p>
+      </div>
+    `;
+
+    console.error(error);
+  }
+}
+
+function setupGuestbookForm() {
+  const form = document.getElementById("guestbookForm");
+  const nameInput = document.getElementById("guestName");
+  const messageInput = document.getElementById("guestMessage");
+  const status = document.getElementById("guestStatus");
+
+  if (!form || !nameInput || !messageInput || !status) return;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const name = nameInput.value.trim();
+    const message = messageInput.value.trim();
+
+    if (!name || !message) return;
+
+    status.textContent = "Saving message...";
+
+    try {
+      await addDoc(collection(db, "guestbook"), {
+        name,
+        message,
+        createdAt: serverTimestamp()
+      });
+
+      messageInput.value = "";
+      status.textContent = "Message saved to Firebase.";
+
+      await loadGuestbook();
+    } catch (error) {
+      status.textContent = "Could not save. Check Firestore rules.";
+      console.error(error);
+    }
+  });
+}
+
+
+
+/* memories.js */
+
+const backupMemories = [
+  {
+    title: "The Day We Met",
+    date: "Chapter 01",
+    description: "A first chapter that still feels precious, because everything after it became warmer."
+  },
+  {
+    title: "The Smile That Stayed",
+    date: "Chapter 02",
+    description: "One smile, one ordinary moment, and suddenly the whole day had a softer meaning."
+  },
+  {
+    title: "Our Forever Promise",
+    date: "Chapter 03",
+    description: "From girlfriend to fiancée, from love to promise, from today to every tomorrow."
+  }
+];
+
+function renderMemory(memory) {
+  return `
+    <article class="memory-card">
+      <span class="memory-meta">${escapeHTML(memory.date || "Memory")}</span>
+      <h3>${escapeHTML(memory.title || "Untitled Memory")}</h3>
+      <p>${escapeHTML(memory.description || "")}</p>
+    </article>
+  `;
+}
+
+function renderMemoryList(memories) {
+  const list = document.getElementById("memoryList");
+  if (!list) return;
+
+  list.innerHTML = memories.map(renderMemory).join("");
+}
+
+async function loadMemories() {
+  try {
+    const memoryQuery = query(collection(db, "memories"), orderBy("createdAt", "desc"));
+    const snapshot = await getDocs(memoryQuery);
+
+    if (snapshot.empty) {
+      renderMemoryList(backupMemories);
+      return;
+    }
+
+    renderMemoryList(snapshot.docs.map((doc) => doc.data()));
+  } catch (error) {
+    renderMemoryList(backupMemories);
+    console.error(error);
+  }
+}
+
+function setupMemoryForm() {
+  const form = document.getElementById("memoryForm");
+  const title = document.getElementById("memoryTitle");
+  const date = document.getElementById("memoryDate");
+  const description = document.getElementById("memoryDescription");
+  const status = document.getElementById("memoryStatus");
+
+  if (!form || !title || !date || !description || !status) return;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const memory = {
+      title: title.value.trim(),
+      date: date.value.trim(),
+      description: description.value.trim()
+    };
+
+    if (!memory.title || !memory.description) return;
+
+    status.textContent = "Saving memory...";
+
+    try {
+      await addDoc(collection(db, "memories"), {
+        ...memory,
+        createdAt: serverTimestamp()
+      });
+
+      form.reset();
+      status.textContent = "Memory saved.";
+      await loadMemories();
+    } catch (error) {
+      status.textContent = "Could not save memory. Check admin permissions.";
+      console.error(error);
+    }
+  });
+}
+
+
+
+/* gallery.js */
+
+const placeholderPhotos = [
+  {
+    title: "First Favorite Photo",
+    caption: "Upload your first picture from the admin panel.",
+    imageUrl: ""
+  },
+  {
+    title: "Dinner Night",
+    caption: "A rose-gold frame waiting for a beautiful memory.",
+    imageUrl: ""
+  },
+  {
+    title: "Forever Frame",
+    caption: "A place for the photo you will both keep coming back to.",
+    imageUrl: ""
+  }
+];
+
+function renderPhoto(photo, index) {
+  const image = photo.imageUrl
+    ? `<img src="${escapeHTML(photo.imageUrl)}" alt="${escapeHTML(photo.title || "Komal memory photo")}" loading="lazy" />`
+    : `<div class="photo-placeholder">${String(index + 1).padStart(2, "0")}</div>`;
+
+  return `
+    <article class="photo-card">
+      <div class="photo-frame">${image}</div>
+      <div class="photo-card-body">
+        <h3>${escapeHTML(photo.title || "Untitled Photo")}</h3>
+        <p>${escapeHTML(photo.caption || "")}</p>
+      </div>
+    </article>
+  `;
+}
+
+function renderGallery(photos) {
+  const gallery = document.getElementById("photoGallery");
+  if (!gallery) return;
+
+  gallery.innerHTML = photos.map(renderPhoto).join("");
+}
+
+async function loadGallery() {
+  try {
+    const photosQuery = query(collection(db, "photos"), orderBy("createdAt", "desc"));
+    const snapshot = await getDocs(photosQuery);
+
+    if (snapshot.empty) {
+      renderGallery(placeholderPhotos);
+      return;
+    }
+
+    renderGallery(snapshot.docs.map((doc) => doc.data()));
+  } catch (error) {
+    renderGallery(placeholderPhotos);
+    console.error(error);
+  }
+}
+
+function setupPhotoForm() {
+  const form = document.getElementById("photoForm");
+  const title = document.getElementById("photoTitle");
+  const caption = document.getElementById("photoCaption");
+  const fileInput = document.getElementById("photoFile");
+  const status = document.getElementById("photoStatus");
+
+  if (!form || !title || !caption || !fileInput || !status) return;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const file = fileInput.files[0];
+    const photoTitle = title.value.trim();
+    const photoCaption = caption.value.trim();
+
+    if (!file || !photoTitle) return;
+
+    status.textContent = "Uploading image...";
+
+    try {
+      const safeName = file.name.replace(/[^a-z0-9._-]/gi, "-").toLowerCase();
+      const imageRef = ref(storage, `gallery/${Date.now()}-${safeName}`);
+
+      await uploadBytes(imageRef, file);
+      const imageUrl = await getDownloadURL(imageRef);
+
+      await addDoc(collection(db, "photos"), {
+        title: photoTitle,
+        caption: photoCaption,
+        imageUrl,
+        storagePath: imageRef.fullPath,
+        createdAt: serverTimestamp()
+      });
+
+      form.reset();
+      status.textContent = "Photo uploaded and published.";
+      await loadGallery();
+    } catch (error) {
+      status.textContent = "Could not upload photo. Check Storage and Firestore rules.";
+      console.error(error);
+    }
+  });
+}
+
+
+
+/* story.js */
+
+function setupStoryForm() {
+  const form = document.getElementById("storyForm");
+  const chapter = document.getElementById("storyChapter");
+  const title = document.getElementById("storyTitleInput");
+  const description = document.getElementById("storyDescription");
+  const status = document.getElementById("storyStatus");
+
+  if (!form || !chapter || !title || !description || !status) return;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const story = {
+      chapter: chapter.value.trim(),
+      title: title.value.trim(),
+      description: description.value.trim()
+    };
+
+    if (!story.chapter || !story.title || !story.description) return;
+
+    status.textContent = "Saving story chapter...";
+
+    try {
+      await addDoc(collection(db, "story"), {
+        ...story,
+        createdAt: serverTimestamp()
+      });
+
+      form.reset();
+      status.textContent = "Story chapter saved.";
+    } catch (error) {
+      status.textContent = "Could not save story chapter. Check Firestore rules.";
+      console.error(error);
+    }
+  });
+}
+
+
+
+/* content.js */
+
+const SETTINGS_KEY = "komalPageSettings";
+const SETTINGS_VERSION = "2026-06-04-mobile-content-v2";
+const FIRESTORE_COLLECTION = "siteContent";
+const FIRESTORE_DOCUMENT = "main";
+let domDefaultSettings = {};
+
+const defaultSettings = {
+  navHome: "Home",
+  navStory: "Our Story",
+  navVault: "Memory Vault",
+  navGallery: "Gallery",
+  navWishes: "Letters to Komal",
+  navGuestbook: "Letters to Komal",
+  navKv: "KV57",
+  heroTitle: "HAPPY BIRTHDAY LOVE!",
+  heroTagline: "A forever kind of love, wrapped in one golden birthday night.",
+  storyEyebrow: "Our Story",
+  storyTitle: "Every chapter became softer with you.",
+  storyAddMessageText: "Add an Our Story message",
+  vaultEyebrow: "Memory Vault",
+  vaultTitle: "A place for moments worth keeping.",
+  vaultAddMessageText: "Add a Memory Vault message",
+  galleryEyebrow: "Photo Gallery",
+  galleryTitle: "Our favorite frames, ready for Firebase Storage.",
+  notesEyebrow: "Letters to Komal",
+  notesTitle: "Letters written with love.",
+  guestbookEyebrow: "Letters to Komal",
+  guestbookTitle: "Letters to Komal.",
+  guestbookAddMessageText: "Add a Letter to Komal",
+  birthdayEyebrow: "KV57",
+  birthdayTitle: "Happy Birthday, Komal!"
+  ,birthdayAddMessageText: "Add a KV57 message"
+};
+
+function getDefaultSettings() {
+  return { ...defaultSettings, ...domDefaultSettings };
+}
+
+function captureDomDefaultSettings() {
+  if (Object.keys(domDefaultSettings).length) return;
+
+  const nextDefaults = {};
+
+  document.querySelectorAll("[data-content]").forEach((element) => {
+    const key = element.dataset.content;
+    if (key && !Object.prototype.hasOwnProperty.call(nextDefaults, key)) {
+      nextDefaults[key] = element.textContent.trim();
+    }
+  });
+
+  domDefaultSettings = nextDefaults;
+}
+
+function filterCurrentSettings(saved) {
+  const defaults = getDefaultSettings();
+
+  if (!saved || typeof saved !== "object") {
+    return {};
+  }
+
+  return Object.keys(defaults).reduce((current, key) => {
+    if (Object.prototype.hasOwnProperty.call(saved, key)) {
+      current[key] = saved[key];
+    }
+
+    return current;
+  }, {});
+}
+
+function readSavedSettings() {
+  try {
+    return JSON.parse(localStorage.getItem(SETTINGS_KEY) || "{}");
+  } catch {
+    return {};
+  }
+}
+
+function getPageSettings() {
+  try {
+    const defaults = getDefaultSettings();
+    const settings = {
+      ...defaults,
+      ...filterCurrentSettings(readSavedSettings())
+    };
+
+    if (settings.heroTitle === "Komal's birthday begins in") {
+      settings.heroTitle = defaults.heroTitle;
+    }
+
+    if (!settings.heroTagline && settings.heroCopy) {
+      settings.heroTagline = defaults.heroTagline;
+    }
+
+    if (settings.navKv === "KV75") {
+      settings.navKv = defaults.navKv;
+    }
+
+    if (settings.birthdayEyebrow === "KV75") {
+      settings.birthdayEyebrow = defaults.birthdayEyebrow;
+    }
+
+    return settings;
+  } catch {
+    return { ...getDefaultSettings() };
+  }
+}
+
+function savePageSettings(settings) {
+  localStorage.setItem(SETTINGS_KEY, JSON.stringify({
+    ...filterCurrentSettings(readSavedSettings()),
+    __version: SETTINGS_VERSION,
+    ...settings
+  }));
+}
+
+async function loadRemotePageSettings() {
+  try {
+    const { db, doc, getDoc } = Promise.resolve(FirebaseServices);
+    const snapshot = await getDoc(doc(db, FIRESTORE_COLLECTION, FIRESTORE_DOCUMENT));
+
+    if (snapshot.exists()) {
+      const remoteSettings = filterCurrentSettings(snapshot.data());
+      savePageSettings(remoteSettings);
+      applyPageSettings();
+      hydratePageSettingsForm();
+    }
+  } catch (error) {
+    console.error("Remote page settings could not load", error);
+  }
+}
+
+async function saveRemotePageSettings(settings) {
+  try {
+    const { db, doc, setDoc, serverTimestamp } = Promise.resolve(FirebaseServices);
+    await setDoc(doc(db, FIRESTORE_COLLECTION, FIRESTORE_DOCUMENT), {
+      __version: SETTINGS_VERSION,
+      ...settings,
+      updatedAt: serverTimestamp()
+    }, { merge: true });
+  } catch (error) {
+    console.error("Remote page settings could not save", error);
+  }
+}
+
+async function resetRemotePageSettings() {
+  try {
+    const { db, doc, deleteDoc } = Promise.resolve(FirebaseServices);
+    await deleteDoc(doc(db, FIRESTORE_COLLECTION, FIRESTORE_DOCUMENT));
+    localStorage.removeItem(SETTINGS_KEY);
+    applyPageSettings();
+    hydratePageSettingsForm();
+    window.dispatchEvent(new CustomEvent("komal:page-settings-reset-complete"));
+  } catch (error) {
+    console.error("Remote page settings could not reset", error);
+    window.dispatchEvent(new CustomEvent("komal:page-settings-reset-error"));
+  }
+}
+
+function applyPageSettings() {
+  const settings = getPageSettings();
+
+  document.querySelectorAll("[data-content]").forEach((element) => {
+    const key = element.dataset.content;
+    if (Object.prototype.hasOwnProperty.call(settings, key)) {
+      element.textContent = settings[key] ?? "";
+    }
+  });
+}
+
+function hydratePageSettingsForm() {
+  const settings = getPageSettings();
+
+  document.querySelectorAll("[data-setting-input]").forEach((input) => {
+    input.value = settings[input.dataset.settingInput] || "";
+  });
+}
+
+function setupPageSettingsForm() {
+  const form = document.getElementById("pageSettingsForm");
+  const status = document.getElementById("pageSettingsStatus");
+
+  if (!form || !status) return;
+
+  hydratePageSettingsForm();
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const nextSettings = {};
+    document.querySelectorAll("[data-setting-input]").forEach((input) => {
+      nextSettings[input.dataset.settingInput] = input.value.trim();
+    });
+
+    savePageSettings(nextSettings);
+    applyPageSettings();
+    status.textContent = "Page text updated locally. Publishing...";
+    await saveRemotePageSettings(nextSettings);
+    status.textContent = "Page text updated.";
+  });
+}
+
+
+
+
+const ContentServices = {
+  applyPageSettings,
+  captureDomDefaultSettings,
+  loadRemotePageSettings,
+  resetRemotePageSettings,
+  saveRemotePageSettings,
+  setupPageSettingsForm
+};
+window.ContentServices = ContentServices;
+
+
+/* effects.js */
+
+function createHeart(options = {}) {
+  const heart = document.createElement("div");
+
+  heart.className = "heart";
+  heart.style.left = `${Math.random() * 100}vw`;
+  heart.style.top = options.startAnywhere ? `${Math.random() * 100}vh` : "-24px";
+  heart.style.fontSize = `${Math.random() * 7 + 7}px`;
+  heart.style.animationDuration = `${Math.random() * 8 + 10}s`;
+  heart.style.animationDelay = options.startAnywhere ? `${Math.random() * -10}s` : "0s";
+  heart.style.opacity = `${Math.random() * 0.28 + 0.18}`;
+  heart.style.setProperty("--heart-drift", `${Math.random() * 110 - 55}px`);
+  heart.style.setProperty("--heart-spin", `${Math.random() * 260 - 130}deg`);
+
+  document.body.appendChild(heart);
+
+  window.setTimeout(() => heart.remove(), 20000);
+}
+
+function startHeartRain() {
+  if (window.__komalHeartsStarted) return;
+  window.__komalHeartsStarted = true;
+
+  for (let index = 0; index < 55; index += 1) {
+    window.setTimeout(() => createHeart({ startAnywhere: true }), index * 45);
+  }
+
+  window.setInterval(createHeart, 150);
+}
+
+
+
+/* countdown.js */
+
+const BIRTHDAY_MONTH_INDEX = 5;
+const BIRTHDAY_DAY = 5;
+
+function getBirthdayTarget(now = new Date()) {
+  const currentYearTarget = new Date(
+    now.getFullYear(),
+    BIRTHDAY_MONTH_INDEX,
+    BIRTHDAY_DAY,
+    0,
+    0,
+    0
+  );
+
+  if (currentYearTarget.getTime() <= now.getTime()) {
+    return new Date(now.getFullYear() + 1, BIRTHDAY_MONTH_INDEX, BIRTHDAY_DAY, 0, 0, 0);
+  }
+
+  return currentYearTarget;
+}
+
+function formatTime(value) {
+  return String(value).padStart(2, "0");
+}
+
+function setupCountdown() {
+  const days = document.getElementById("countDays");
+  const hours = document.getElementById("countHours");
+  const minutes = document.getElementById("countMinutes");
+  const seconds = document.getElementById("countSeconds");
+
+  if (!days || !hours || !minutes || !seconds) return;
+
+  function render() {
+    const now = new Date();
+    const target = getBirthdayTarget(now);
+    const distance = Math.max(target.getTime() - now.getTime(), 0);
+
+    const totalSeconds = Math.floor(distance / 1000);
+    const dayValue = Math.floor(totalSeconds / 86400);
+    const hourValue = Math.floor((totalSeconds % 86400) / 3600);
+    const minuteValue = Math.floor((totalSeconds % 3600) / 60);
+    const secondValue = totalSeconds % 60;
+
+    days.textContent = formatTime(dayValue);
+    hours.textContent = formatTime(hourValue);
+    minutes.textContent = formatTime(minuteValue);
+    seconds.textContent = formatTime(secondValue);
+  }
+
+  render();
+  window.setInterval(render, 1000);
+}
+
+
+
+/* admin.js */
+
+const CREDENTIAL_KEY = "komalAdminCredentials";
+const SESSION_KEY = "komalAdminSession";
+
+const defaultCredentials = {
+  username: "ADMIN",
+  password: "1234"
+};
+
+function getCredentials() {
+  try {
+    return {
+      ...defaultCredentials,
+      ...JSON.parse(localStorage.getItem(CREDENTIAL_KEY) || "{}")
+    };
+  } catch {
+    return { ...defaultCredentials };
+  }
+}
+
+function saveCredentials(credentials) {
+  localStorage.setItem(CREDENTIAL_KEY, JSON.stringify(credentials));
+}
+
+function isSignedIn() {
+  return localStorage.getItem(SESSION_KEY) === "true";
+}
+
+function openAdminPanel() {
+  const panel = document.getElementById("admin");
+  if (!panel) return;
+
+  panel.classList.add("is-open");
+  panel.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+  renderAdminSession();
+}
+
+function closeAdminPanel() {
+  const panel = document.getElementById("admin");
+  if (!panel) return;
+
+  panel.classList.remove("is-open");
+  panel.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
+
+  if (window.location.hash === "#admin") {
+    history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+  }
+}
+
+function renderAdminSession() {
+  const authCard = document.getElementById("adminAuthCard");
+  const content = document.getElementById("adminContent");
+  const label = document.getElementById("adminUserLabel");
+  const credentials = getCredentials();
+
+  if (!authCard || !content || !label) return;
+
+  if (isSignedIn()) {
+    authCard.hidden = true;
+    content.hidden = false;
+    label.textContent = `Signed in as ${credentials.username}`;
+    return;
+  }
+
+  authCard.hidden = false;
+  content.hidden = true;
+  label.textContent = "Signed out";
+}
+
+function setupAdminTabs() {
+  const tabs = document.querySelectorAll("[data-admin-tab]");
+  const panels = document.querySelectorAll("[data-admin-panel]");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const activePanel = tab.dataset.adminTab;
+
+      tabs.forEach((item) => item.classList.toggle("is-active", item === tab));
+      panels.forEach((panel) => {
+        panel.hidden = panel.dataset.adminPanel !== activePanel;
+      });
+    });
+  });
+}
+
+function setupCredentialForm() {
+  const form = document.getElementById("credentialForm");
+  const username = document.getElementById("newAdminUsername");
+  const password = document.getElementById("newAdminPassword");
+  const status = document.getElementById("credentialStatus");
+
+  if (!form || !username || !password || !status) return;
+
+  const credentials = getCredentials();
+  username.value = credentials.username;
+  password.value = credentials.password;
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const nextCredentials = {
+      username: username.value.trim() || defaultCredentials.username,
+      password: password.value || defaultCredentials.password
+    };
+
+    saveCredentials(nextCredentials);
+    status.textContent = "Admin login updated.";
+    renderAdminSession();
+  });
+}
+
+function setupAdminPanel() {
+  const openButtons = [
+    document.getElementById("adminOpenBtn"),
+    document.getElementById("adminHeroBtn")
+  ].filter(Boolean);
+  const closeButton = document.getElementById("adminCloseBtn");
+  const loginForm = document.getElementById("adminLoginForm");
+  const logoutButton = document.getElementById("adminLogoutBtn");
+  const usernameInput = document.getElementById("adminUsername");
+  const passwordInput = document.getElementById("adminPassword");
+  const status = document.getElementById("adminAuthStatus");
+
+  if (window.location.hash === "#admin") {
+    openAdminPanel();
+  }
+
+  window.addEventListener("hashchange", () => {
+    if (window.location.hash === "#admin") {
+      openAdminPanel();
+    }
+  });
+
+  openButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      history.replaceState(null, "", "#admin");
+      openAdminPanel();
+    });
+  });
+
+  closeButton?.addEventListener("click", closeAdminPanel);
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeAdminPanel();
+    }
+  });
+
+  loginForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    if (!usernameInput || !passwordInput || !status) return;
+
+    const credentials = getCredentials();
+    const usernameMatches = usernameInput.value.trim().toUpperCase() === credentials.username.toUpperCase();
+    const passwordMatches = passwordInput.value === credentials.password;
+
+    if (usernameMatches && passwordMatches) {
+      localStorage.setItem(SESSION_KEY, "true");
+      passwordInput.value = "";
+      status.textContent = "";
+      renderAdminSession();
+      return;
+    }
+
+    status.textContent = "Wrong username or password.";
+  });
+
+  logoutButton?.addEventListener("click", () => {
+    localStorage.removeItem(SESSION_KEY);
+    renderAdminSession();
+  });
+
+  setupAdminTabs();
+  setupCredentialForm();
+  renderAdminSession();
+}
+
+
+
+/* bootstrap.js */
+
+(function () {
+  const SETTINGS_KEY = "komalPageSettings";
+  const SETTINGS_VERSION = "2026-06-04-mobile-content-v2";
+  const CREDENTIAL_KEY = "komalAdminCredentials";
+  const SESSION_KEY = "komalAdminSession";
+  const KV_PASSWORD_KEY = "komalKvPassword";
+  const KV_SESSION_KEY = "komalKvUnlocked";
+  const STORY_PASSWORD_KEY = "komalStoryPassword";
+  const STORY_SESSION_KEY = "komalStoryUnlocked";
+  const BIRTHDAY_MESSAGES_KEY = "komalBirthdayMessages";
+  const SHARE_MESSAGE_IDS_KEY = "komalSharedMessageIds";
+  const BACKGROUND_AUDIO_KEY = "komalBackgroundAudio";
+  const BIRTHDAY_MESSAGES_COLLECTION = "birthdayMessages";
+  const BIRTHDAY_MONTH_INDEX = 5;
+  const BIRTHDAY_DAY = 5;
+  let runtimeBirthdayMessages = null;
+  let domDefaultSettings = {};
+  let birthdayMessagesUnsubscribe = null;
+
+  const defaultSettings = {
+    navHome: "Home",
+    navStory: "Our Story",
+    navVault: "Memory Vault",
+    navGallery: "Gallery",
+    navWishes: "Letters to Komal",
+    navGuestbook: "Letters to Komal",
+    navKv: "KV57",
+    heroTitle: "HAPPY BIRTHDAY LOVE!",
+    heroTagline: "A forever kind of love, wrapped in one golden birthday night.",
+    storyEyebrow: "Our Story",
+    storyTitle: "Every chapter became softer with you.",
+    storyAddMessageText: "Add an Our Story message",
+    vaultEyebrow: "Memory Vault",
+    vaultTitle: "A place for moments worth keeping.",
+    vaultAddMessageText: "Add a Memory Vault message",
+    galleryEyebrow: "Photo Gallery",
+    galleryTitle: "Our favorite frames, ready for Firebase Storage.",
+    notesEyebrow: "Letters to Komal",
+    notesTitle: "Letters written with love.",
+    guestbookEyebrow: "Letters to Komal",
+    guestbookTitle: "Letters to Komal.",
+    guestbookAddMessageText: "Add a Letter to Komal",
+    birthdayEyebrow: "KV57",
+    birthdayTitle: "Happy Birthday, Komal!"
+    ,birthdayAddMessageText: "Add a KV57 message"
+  };
+
+  const defaultCredentials = {
+    username: "ADMIN",
+    password: "1234"
+  };
+
+  function getDefaultSettings() {
+    return { ...defaultSettings, ...domDefaultSettings };
+  }
+
+  function captureDomDefaultSettings() {
+    if (Object.keys(domDefaultSettings).length) return;
+
+    const nextDefaults = {};
+
+    document.querySelectorAll("[data-content]").forEach((element) => {
+      const key = element.dataset.content;
+      if (key && !Object.prototype.hasOwnProperty.call(nextDefaults, key)) {
+        nextDefaults[key] = element.textContent.trim();
+      }
+    });
+
+    domDefaultSettings = nextDefaults;
+  }
+
+  function getCurrentSavedSettings() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(SETTINGS_KEY) || "{}");
+      if (!saved || typeof saved !== "object") {
+        return {};
+      }
+
+      return Object.keys(getDefaultSettings()).reduce((current, key) => {
+        if (Object.prototype.hasOwnProperty.call(saved, key)) {
+          current[key] = saved[key];
+        }
+
+        return current;
+      }, {});
+    } catch {
+      return {};
+    }
+  }
+
+  function readJSON(key, fallback) {
+    try {
+      return { ...fallback, ...JSON.parse(localStorage.getItem(key) || "{}") };
+    } catch {
+      return { ...fallback };
+    }
+  }
+
+  function getPageSettings() {
+    const defaults = getDefaultSettings();
+    const settings = { ...defaults, ...getCurrentSavedSettings() };
+
+    if (settings.heroTitle === "Komal's birthday begins in") {
+      settings.heroTitle = defaults.heroTitle;
+    }
+
+    if (!settings.heroTagline && settings.heroCopy) {
+      settings.heroTagline = defaults.heroTagline;
+    }
+
+    if (settings.navGuestbook === "Guestbook") {
+      settings.navGuestbook = defaults.navGuestbook;
+    }
+
+    if (settings.navWishes === "Wishes") {
+      settings.navWishes = defaults.navWishes;
+    }
+
+    if (settings.guestbookTitle === "A little message book for you.") {
+      settings.guestbookTitle = defaults.guestbookTitle;
+    }
+
+    if (settings.notesTitle === "When you miss me, open one.") {
+      settings.notesTitle = defaults.notesTitle;
+    }
+
+    if (settings.navKv === "KV75") {
+      settings.navKv = defaults.navKv;
+    }
+
+    if (settings.birthdayEyebrow === "KV75") {
+      settings.birthdayEyebrow = defaults.birthdayEyebrow;
+    }
+
+    return settings;
+  }
+
+  function savePageSettings(settings) {
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify({
+      ...getCurrentSavedSettings(),
+      __version: SETTINGS_VERSION,
+      ...settings
+    }));
+  }
+
+  function resetPageSettings() {
+    localStorage.removeItem(SETTINGS_KEY);
+    localStorage.removeItem(BACKGROUND_AUDIO_KEY);
+    applyPageSettings();
+    hydratePageSettingsForm();
+    setupBackgroundAudio();
+    window.dispatchEvent(new CustomEvent("komal:page-settings-reset"));
+  }
+
+  function getCredentials() {
+    return readJSON(CREDENTIAL_KEY, defaultCredentials);
+  }
+
+  function saveCredentials(credentials) {
+    localStorage.setItem(CREDENTIAL_KEY, JSON.stringify(credentials));
+  }
+
+  function getKvPassword() {
+    return localStorage.getItem(KV_PASSWORD_KEY) || "KV57";
+  }
+
+  function saveKvPassword(password) {
+    localStorage.setItem(KV_PASSWORD_KEY, password || "KV57");
+  }
+
+  function getStoryPassword() {
+    return localStorage.getItem(STORY_PASSWORD_KEY) || "STORY";
+  }
+
+  function saveStoryPassword(password) {
+    localStorage.setItem(STORY_PASSWORD_KEY, password || "STORY");
+  }
+
+  function applyPageSettings() {
+    const settings = getPageSettings();
+
+    document.querySelectorAll("[data-content]").forEach((element) => {
+      const key = element.dataset.content;
+      if (Object.prototype.hasOwnProperty.call(settings, key)) {
+        element.textContent = settings[key] ?? "";
+      }
+    });
+
+    if (settings.watermarkImage) {
+      document.body.classList.add("has-watermark");
+      document.body.style.setProperty("--watermark-image", `url("${settings.watermarkImage}")`);
+    } else {
+      document.body.classList.remove("has-watermark");
+      document.body.style.removeProperty("--watermark-image");
+    }
+  }
+
+  function hydratePageSettingsForm() {
+    const settings = getPageSettings();
+
+    document.querySelectorAll("[data-setting-input]").forEach((input) => {
+      input.value = settings[input.dataset.settingInput] || "";
+    });
+  }
+
+  function setupPageSettingsForm() {
+    const forms = document.querySelectorAll(".admin-form");
+
+    hydratePageSettingsForm();
+
+    forms.forEach((form) => {
+      form.setAttribute("novalidate", "");
+
+      if (!form.querySelector("[data-setting-input]")) return;
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const nextSettings = {};
+        document.querySelectorAll("[data-setting-input]").forEach((input) => {
+          nextSettings[input.dataset.settingInput] = input.value.trim();
+        });
+
+        savePageSettings(nextSettings);
+        applyPageSettings();
+
+        const formStatus = form.querySelector(".status");
+        if (formStatus) {
+          formStatus.textContent = "Saved.";
+        }
+
+        window.dispatchEvent(new CustomEvent("komal:page-settings-saved", { detail: nextSettings }));
+      });
+    });
+  }
+
+  function setupPanelMinimizeButtons() {
+    document.querySelectorAll("[data-minimize-panel]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const panel = button.closest("[data-admin-panel]");
+        if (!panel) return;
+
+        const activeTab = document.querySelector(`[data-admin-tab="${panel.dataset.adminPanel}"]`);
+        panel.hidden = true;
+        activeTab?.classList.remove("is-active");
+      });
+    });
+  }
+
+  function setupImageInputs() {
+    document.querySelectorAll("[data-image-input]").forEach((input) => {
+      input.addEventListener("change", () => {
+        const file = input.files?.[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.addEventListener("load", () => {
+          savePageSettings({ [input.dataset.imageInput]: reader.result });
+          applyPageSettings();
+          const status = input.closest(".admin-form")?.querySelector(".status");
+          if (status) {
+            status.textContent = "Picture saved.";
+          }
+        });
+        reader.readAsDataURL(file);
+      });
+    });
+  }
+
+  function setupAudioInputs() {
+    document.querySelectorAll("[data-audio-input]").forEach((input) => {
+      input.addEventListener("change", () => {
+        const file = input.files?.[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.addEventListener("load", () => {
+          localStorage.setItem(BACKGROUND_AUDIO_KEY, reader.result);
+          setupBackgroundAudio();
+
+          const status = input.closest(".admin-form")?.querySelector(".status");
+          if (status) {
+            status.textContent = "Soft melody saved.";
+          }
+        });
+        reader.readAsDataURL(file);
+      });
+    });
+  }
+
+  function setupSettingsReset() {
+    const button = document.getElementById("resetPageSettingsBtn");
+    const status = document.getElementById("adminSettingsStatus");
+
+    if (!button) return;
+
+    button.addEventListener("click", () => {
+      const credentials = getCredentials();
+      const password = window.prompt("Enter admin password to reset page content:");
+
+      if (password !== credentials.password) {
+        if (status) status.textContent = "Wrong password. Reset cancelled.";
+        return;
+      }
+
+      resetPageSettings();
+
+      if (status) {
+        status.textContent = "Page content reset. Publishing reset...";
+      }
+    });
+  }
+
+  window.addEventListener("komal:page-settings-reset-complete", () => {
+    const status = document.getElementById("adminSettingsStatus");
+    if (status) status.textContent = "Page content reset to index defaults.";
+  });
+
+  window.addEventListener("komal:page-settings-reset-error", () => {
+    const status = document.getElementById("adminSettingsStatus");
+    if (status) status.textContent = "Local reset done. Firebase reset needs rules/network check.";
+  });
+
+  function setupBackgroundAudio() {
+    const audioSource = localStorage.getItem(BACKGROUND_AUDIO_KEY);
+    let audio = document.getElementById("softBackgroundSong");
+
+    if (!audioSource) {
+      audio?.remove();
+      return;
+    }
+
+    if (!audio) {
+      audio = document.createElement("audio");
+      audio.id = "softBackgroundSong";
+      audio.loop = true;
+      audio.preload = "auto";
+      document.body.appendChild(audio);
+    }
+
+    if (audio.src !== audioSource) {
+      audio.src = audioSource;
+    }
+
+    audio.volume = 0.14;
+
+    const playSoftly = () => {
+      audio.play().catch(() => {});
+    };
+
+    document.addEventListener("click", playSoftly, { once: true });
+    document.addEventListener("touchstart", playSoftly, { once: true });
+    document.addEventListener("keydown", playSoftly, { once: true });
+  }
+
+  function getBirthdayMessages() {
+    if (runtimeBirthdayMessages) return runtimeBirthdayMessages;
+
+    try {
+      runtimeBirthdayMessages = JSON.parse(localStorage.getItem(BIRTHDAY_MESSAGES_KEY) || "{}");
+    } catch {
+      runtimeBirthdayMessages = {};
+    }
+
+    return runtimeBirthdayMessages;
+  }
+
+  function saveBirthdayMessages(messages) {
+    runtimeBirthdayMessages = messages;
+
+    try {
+      localStorage.setItem(BIRTHDAY_MESSAGES_KEY, JSON.stringify(messages));
+    } catch (error) {
+      console.error("Birthday messages could not save locally", error);
+    }
+  }
+
+  function ensureBirthdayMessageIds() {
+    const messagesByPage = getBirthdayMessages();
+    let changed = false;
+
+    Object.keys(messagesByPage).forEach((page) => {
+      messagesByPage[page] = (messagesByPage[page] || []).map((message, index) => {
+        if (message.id) return message;
+
+        changed = true;
+        return {
+          ...message,
+          id: `legacy-${page}-${message.createdAt || Date.now()}-${index}`
+        };
+      });
+    });
+
+    if (changed) {
+      saveBirthdayMessages(messagesByPage);
+    }
+  }
+
+  function getSharedMessageIds() {
+    try {
+      return JSON.parse(sessionStorage.getItem(SHARE_MESSAGE_IDS_KEY) || "{}");
+    } catch {
+      return {};
+    }
+  }
+
+  function rememberSharedMessage(page, id) {
+    const sharedIds = getSharedMessageIds();
+    sharedIds[page] = [id, ...(sharedIds[page] || [])];
+    sessionStorage.setItem(SHARE_MESSAGE_IDS_KEY, JSON.stringify(sharedIds));
+  }
+
+  function mergeBirthdayMessages(remoteMessages) {
+    const messagesByPage = getBirthdayMessages();
+    let changed = false;
+
+    remoteMessages.forEach((message) => {
+      const page = message.page;
+      if (!page) return;
+
+      const messages = messagesByPage[page] || [];
+      const existingIndex = messages.findIndex((item) => item.id === message.id);
+
+      if (existingIndex >= 0) {
+        messages[existingIndex] = { ...messages[existingIndex], ...message };
+      } else {
+        messages.push(message);
+      }
+
+      messages.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+      messagesByPage[page] = messages;
+      changed = true;
+    });
+
+    if (changed) {
+      saveBirthdayMessages(messagesByPage);
+    }
+  }
+
+  async function loadRemoteBirthdayMessages() {
+    try {
+      const {
+        db,
+        collection,
+        getDocs,
+        query,
+        orderBy
+      } = Promise.resolve(FirebaseServices);
+      const snapshot = await getDocs(query(
+        collection(db, BIRTHDAY_MESSAGES_COLLECTION),
+        orderBy("createdAt", "desc")
+      ));
+      const remoteMessages = snapshot.docs.map((docSnapshot) => {
+        const data = docSnapshot.data();
+        return {
+          id: docSnapshot.id,
+          page: data.page || "",
+          from: data.from || "",
+          text: data.text || "",
+          mediaUrl: data.mediaUrl || "",
+          mediaType: data.mediaType || "",
+          reply: data.reply || "",
+          createdAt: data.createdAt?.toMillis?.() || data.localCreatedAt || 0
+        };
+      });
+
+      mergeBirthdayMessages(remoteMessages);
+      renderBirthdayMessages();
+    } catch (error) {
+      console.error("Remote birthday messages could not load", error);
+    }
+  }
+
+  async function listenRemoteBirthdayMessages() {
+    if (birthdayMessagesUnsubscribe) return;
+
+    try {
+      const {
+        db,
+        collection,
+        query,
+        orderBy,
+        onSnapshot
+      } = Promise.resolve(FirebaseServices);
+
+      birthdayMessagesUnsubscribe = onSnapshot(query(
+        collection(db, BIRTHDAY_MESSAGES_COLLECTION),
+        orderBy("createdAt", "desc")
+      ), (snapshot) => {
+        const remoteMessages = snapshot.docs.map((docSnapshot) => {
+          const data = docSnapshot.data();
+          return {
+            id: docSnapshot.id,
+            page: data.page || "",
+            from: data.from || "",
+            text: data.text || "",
+            mediaUrl: data.mediaUrl || "",
+            mediaType: data.mediaType || "",
+            reply: data.reply || "",
+            createdAt: data.createdAt?.toMillis?.() || data.localCreatedAt || 0
+          };
+        });
+
+        mergeBirthdayMessages(remoteMessages);
+        renderBirthdayMessages();
+      }, (error) => {
+        console.error("Remote birthday messages listener could not start", error);
+      });
+    } catch (error) {
+      console.error("Remote birthday messages listener could not start", error);
+    }
+  }
+
+  async function uploadBirthdayMessageMedia(file, page, messageId) {
+    if (!file) return { mediaUrl: "", mediaType: "" };
+
+    function withTimeout(promise, label, timeout = 45000) {
+      return Promise.race([
+        promise,
+        new Promise((_, reject) => {
+          window.setTimeout(() => reject(new Error(`${label} timed out`)), timeout);
+        })
+      ]);
+    }
+
+    function createCompressedImageFallback() {
+      if (!file.type.startsWith("image/")) {
+        return Promise.resolve({ mediaUrl: "", mediaType: "", mediaUploadFailed: true });
+      }
+
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+
+        reader.addEventListener("load", () => {
+          const image = new Image();
+
+          image.addEventListener("load", () => {
+            const maxSize = 900;
+            const scale = Math.min(1, maxSize / Math.max(image.width, image.height));
+            const canvas = document.createElement("canvas");
+            canvas.width = Math.max(1, Math.round(image.width * scale));
+            canvas.height = Math.max(1, Math.round(image.height * scale));
+
+            const context = canvas.getContext("2d");
+            if (!context) {
+              resolve({ mediaUrl: "", mediaType: "", mediaUploadFailed: true });
+              return;
+            }
+
+            context.drawImage(image, 0, 0, canvas.width, canvas.height);
+            resolve({
+              mediaUrl: canvas.toDataURL("image/jpeg", 0.72),
+              mediaType: "image/jpeg",
+              mediaUploadFailed: true
+            });
+          });
+
+          image.addEventListener("error", () => {
+            resolve({ mediaUrl: "", mediaType: "", mediaUploadFailed: true });
+          });
+
+          image.src = reader.result;
+        });
+
+        reader.addEventListener("error", () => {
+          resolve({ mediaUrl: "", mediaType: "", mediaUploadFailed: true });
+        });
+
+        reader.readAsDataURL(file);
+      });
+    }
+
+    try {
+      const {
+        storage,
+        ref,
+        uploadBytes,
+        getDownloadURL
+      } = await withTimeout(Promise.resolve(FirebaseServices), "Firebase import");
+      const safeName = file.name.replace(/[^a-z0-9._-]/gi, "-").toLowerCase();
+      const mediaRef = ref(storage, `${BIRTHDAY_MESSAGES_COLLECTION}/${page}/${messageId}-${safeName}`);
+
+      await withTimeout(uploadBytes(mediaRef, file), "Firebase Storage upload");
+
+      return {
+        mediaUrl: await withTimeout(getDownloadURL(mediaRef), "Firebase Storage URL"),
+        mediaType: file.type,
+        isLocalFallback: false
+      };
+    } catch (error) {
+      console.error("Birthday message media could not upload", error);
+      return createCompressedImageFallback();
+    }
+  }
+
+  async function saveRemoteBirthdayMessage(message) {
+    try {
+      const {
+        db,
+        doc,
+        setDoc,
+        serverTimestamp
+      } = Promise.resolve(FirebaseServices);
+
+      await setDoc(doc(db, BIRTHDAY_MESSAGES_COLLECTION, message.id), {
+        page: message.page,
+        from: message.from,
+        text: message.text,
+        mediaUrl: message.mediaUrl || "",
+        mediaType: message.mediaType || "",
+        reply: message.reply || "",
+        localCreatedAt: message.createdAt,
+        createdAt: serverTimestamp()
+      }, { merge: true });
+
+      return true;
+    } catch (error) {
+      console.error("Birthday message could not save remotely", error);
+      return false;
+    }
+  }
+
+  async function saveRemoteBirthdayReply(page, id, reply) {
+    if (!id) return;
+
+    try {
+      const {
+        db,
+        doc,
+        setDoc
+      } = Promise.resolve(FirebaseServices);
+
+      await setDoc(doc(db, BIRTHDAY_MESSAGES_COLLECTION, id), { page, reply }, { merge: true });
+    } catch (error) {
+      console.error("Birthday reply could not save remotely", error);
+    }
+  }
+
+  async function deleteRemoteBirthdayMessage(id) {
+    if (!id) return;
+
+    try {
+      const {
+        db,
+        doc,
+        deleteDoc
+      } = Promise.resolve(FirebaseServices);
+
+      await deleteDoc(doc(db, BIRTHDAY_MESSAGES_COLLECTION, id));
+    } catch (error) {
+      console.error("Birthday message could not delete remotely", error);
+    }
+  }
+
+  function escapeText(value) {
+    return String(value || "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function renderBirthdayMessages() {
+    const messagesByPage = getBirthdayMessages();
+
+    document.querySelectorAll("[data-message-list]").forEach((list) => {
+      const page = list.dataset.messageList;
+      const sharedIds = getSharedMessageIds()[page] || [];
+      const messages = document.body.classList.contains("share-mode")
+        ? (messagesByPage[page] || []).filter((message) => sharedIds.includes(message.id))
+        : messagesByPage[page] || [];
+
+      list.innerHTML = messages.map((message, index) => {
+        const messageId = message.id || "";
+        const mediaType = message.mediaType || "";
+        const media = message.mediaUrl
+          ? mediaType.startsWith("video/")
+            ? `<button class="message-media-button" type="button" data-media-url="${escapeText(message.mediaUrl)}" data-media-type="${escapeText(mediaType)}" aria-label="Open birthday video"><video muted playsinline src="${message.mediaUrl}"></video></button>`
+            : `<button class="message-media-button" type="button" data-media-url="${escapeText(message.mediaUrl)}" data-media-type="${escapeText(mediaType)}" aria-label="Open birthday picture"><img src="${message.mediaUrl}" alt="${escapeText(message.from || "Birthday message")}" /></button>`
+          : `<div class="message-empty-photo" aria-hidden="true"></div>`;
+
+        return `
+          <article class="birthday-message-card" data-message-card-page="${escapeText(page)}" data-message-card-id="${escapeText(messageId)}">
+            <button class="message-delete-button" type="button" data-delete-page="${escapeText(page)}" data-delete-id="${escapeText(messageId)}" data-delete-index="${index}" aria-label="Delete message"><span>&times;</span><em>Delete</em></button>
+            ${media}
+            <div class="birthday-message-body">
+              <h3>${escapeText(message.from || "Someone special")}</h3>
+              <p>${escapeText(message.text || "")}</p>
+              <div class="komal-reply-display"${message.reply ? "" : " hidden"}>
+                <span>Komal replied</span>
+                <p>${escapeText(message.reply || "")}</p>
+                <div class="komal-reply-actions">
+                  <button class="komal-reply-edit" type="button" data-reply-edit>Edit</button>
+                  <button class="komal-reply-delete" type="button" data-reply-delete data-delete-page="${escapeText(page)}" data-delete-id="${escapeText(messageId)}" data-delete-index="${index}">Delete Reply</button>
+                </div>
+              </div>
+              <label class="komal-reply-box"${message.reply ? " hidden" : ""}>
+                <span>Komal's reply</span>
+                <textarea data-reply-page="${escapeText(page)}" data-reply-id="${escapeText(messageId)}" data-reply-index="${index}" placeholder="A little space for Komal to write back...">${escapeText(message.reply || "")}</textarea>
+                <button class="komal-reply-send" type="button" data-reply-send>Send</button>
+                <em class="komal-reply-status" aria-live="polite"></em>
+              </label>
+            </div>
+          </article>
+        `;
+      }).join("");
+    });
+  }
+
+  function saveKomalReply(page, id, indexValue, reply) {
+    if (!page) return;
+
+    const messagesByPage = getBirthdayMessages();
+    const messages = messagesByPage[page] || [];
+    const index = Number(indexValue);
+
+    if (id) {
+      const target = messages.find((message) => message.id === id);
+      if (target) {
+        target.reply = reply;
+      }
+    } else if (Number.isInteger(index) && messages[index]) {
+      messages[index].reply = reply;
+    }
+
+    messagesByPage[page] = messages;
+    saveBirthdayMessages(messagesByPage);
+    saveRemoteBirthdayReply(page, id, reply);
+  }
+
+  function removeKomalReply(page, id, indexValue) {
+    if (!page) return false;
+
+    const messagesByPage = getBirthdayMessages();
+    const messages = messagesByPage[page] || [];
+    const index = Number(indexValue);
+    let changed = false;
+
+    if (id) {
+      const target = messages.find((message) => message.id === id);
+      if (target) {
+        target.reply = "";
+        changed = true;
+      }
+    } else if (Number.isInteger(index) && messages[index]) {
+      messages[index].reply = "";
+      changed = true;
+    }
+
+    if (!changed) return false;
+
+    messagesByPage[page] = messages;
+    saveBirthdayMessages(messagesByPage);
+    saveRemoteBirthdayReply(page, id, "");
+    renderBirthdayMessages();
+    return true;
+  }
+
+  function setupKomalReplies() {
+    const saveFromInput = (input) => {
+      saveKomalReply(
+        input.dataset.replyPage || "",
+        input.dataset.replyId || "",
+        input.dataset.replyIndex || "",
+        input.value.trim()
+      );
+    };
+
+    document.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-reply-send]");
+      if (!button) return;
+
+      const replyBox = button.closest(".komal-reply-box");
+      const input = replyBox?.querySelector("[data-reply-page]");
+      if (!input) return;
+
+      saveFromInput(input);
+      renderBirthdayMessages();
+    });
+
+    document.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-reply-edit]");
+      if (!button) return;
+
+      const card = button.closest(".birthday-message-card");
+      const display = card?.querySelector(".komal-reply-display");
+      const replyBox = card?.querySelector(".komal-reply-box");
+      const input = replyBox?.querySelector("[data-reply-page]");
+      if (!display || !replyBox) return;
+
+      display.hidden = true;
+      replyBox.hidden = false;
+      window.setTimeout(() => input?.focus(), 30);
+    });
+
+    document.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-reply-delete]");
+      if (!button) return;
+
+      openDeleteDialog(
+        button.dataset.deletePage || "",
+        button.dataset.deleteId || "",
+        button.dataset.deleteIndex || "",
+        "reply"
+      );
+    });
+  }
+
+  function removeBirthdayMessage(page, id, indexValue) {
+    if (!page) return false;
+
+    const messagesByPage = getBirthdayMessages();
+    const messages = messagesByPage[page] || [];
+    const index = Number(indexValue);
+
+    if (id) {
+      messagesByPage[page] = messages.filter((message) => message.id !== id);
+    } else if (Number.isInteger(index) && index >= 0) {
+      messagesByPage[page] = messages.filter((message, messageIndex) => messageIndex !== index);
+    } else {
+      return;
+    }
+
+    saveBirthdayMessages(messagesByPage);
+
+    if (id) {
+      const sharedIds = getSharedMessageIds();
+      if (sharedIds[page]) {
+        sharedIds[page] = sharedIds[page].filter((messageId) => messageId !== id);
+        sessionStorage.setItem(SHARE_MESSAGE_IDS_KEY, JSON.stringify(sharedIds));
+      }
+
+      deleteRemoteBirthdayMessage(id);
+    }
+
+    renderBirthdayMessages();
+    return true;
+  }
+
+  function getDeleteDialog() {
+    let dialog = document.getElementById("messageDeleteDialog");
+
+    if (dialog) return dialog;
+
+    dialog = document.createElement("div");
+    dialog.id = "messageDeleteDialog";
+    dialog.className = "message-delete-dialog";
+    dialog.innerHTML = `
+      <form class="message-delete-card">
+        <button class="message-delete-close" type="button" aria-label="Close">×</button>
+        <h3>Delete Message</h3>
+        <p>Enter admin password to delete this postcard.</p>
+        <input type="password" autocomplete="current-password" placeholder="Admin password" />
+        <button class="btn primary" type="submit">Delete</button>
+        <p class="status"></p>
+      </form>
+    `;
+    document.body.appendChild(dialog);
+
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog || event.target.closest(".message-delete-close")) {
+        closeDeleteDialog();
+      }
+    });
+
+    dialog.querySelector("form")?.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const input = dialog.querySelector("input");
+      const status = dialog.querySelector(".status");
+      const page = dialog.dataset.deletePage || "";
+      const id = dialog.dataset.deleteId || "";
+      const index = dialog.dataset.deleteIndex || "";
+      const type = dialog.dataset.deleteType || "message";
+
+      if (!input || !status) return;
+
+      if (input.value.trim() !== getCredentials().password) {
+        status.textContent = "Wrong admin password.";
+        return;
+      }
+
+      const removed = type === "reply"
+        ? removeKomalReply(page, id, index)
+        : removeBirthdayMessage(page, id, index);
+
+      if (removed) {
+        closeDeleteDialog();
+      } else {
+        status.textContent = type === "reply"
+          ? "Could not delete this reply."
+          : "Could not delete this message.";
+      }
+    });
+
+    return dialog;
+  }
+
+  function closeDeleteDialog() {
+    const dialog = document.getElementById("messageDeleteDialog");
+    if (!dialog) return;
+
+    dialog.classList.remove("is-open");
+    dialog.dataset.deletePage = "";
+    dialog.dataset.deleteId = "";
+    dialog.dataset.deleteIndex = "";
+    dialog.dataset.deleteType = "";
+
+    const input = dialog.querySelector("input");
+    const status = dialog.querySelector(".status");
+    if (input) input.value = "";
+    if (status) status.textContent = "";
+  }
+
+  function openDeleteDialog(page, id, index, type = "message") {
+    const dialog = getDeleteDialog();
+    const input = dialog.querySelector("input");
+    const title = dialog.querySelector("h3");
+    const copy = dialog.querySelector("form > p");
+
+    dialog.dataset.deletePage = page;
+    dialog.dataset.deleteId = id;
+    dialog.dataset.deleteIndex = index;
+    dialog.dataset.deleteType = type;
+
+    if (title) title.textContent = type === "reply" ? "Delete Reply" : "Delete Message";
+    if (copy) {
+      copy.textContent = type === "reply"
+        ? "Enter admin password to delete Komal's reply."
+        : "Enter admin password to delete this postcard.";
+    }
+
+    dialog.classList.add("is-open");
+
+    window.setTimeout(() => input?.focus(), 50);
+  }
+
+  function setupBirthdayMessageDeletion() {
+    document.addEventListener("click", (event) => {
+      const button = event.target.closest(".message-delete-button");
+      if (!button) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      openDeleteDialog(
+        button.dataset.deletePage || "",
+        button.dataset.deleteId || "",
+        button.dataset.deleteIndex || ""
+      );
+    });
+  }
+
+  function openMessageMedia(url, type) {
+    if (!url) return;
+
+    let viewer = document.getElementById("messageMediaViewer");
+
+    if (!viewer) {
+      viewer = document.createElement("div");
+      viewer.id = "messageMediaViewer";
+      viewer.className = "message-media-viewer";
+      viewer.innerHTML = `
+        <button class="message-media-close" type="button" aria-label="Close">×</button>
+        <div class="message-media-stage"></div>
+      `;
+      document.body.appendChild(viewer);
+
+      viewer.addEventListener("click", (event) => {
+        if (event.target === viewer || event.target.closest(".message-media-close")) {
+          closeMessageMedia();
+        }
+      });
+    }
+
+    const stage = viewer.querySelector(".message-media-stage");
+    if (!stage) return;
+
+    stage.innerHTML = type.startsWith("video/")
+      ? `<video controls autoplay src="${url}"></video>`
+      : `<img src="${url}" alt="Birthday message media" />`;
+    viewer.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMessageMedia() {
+    const viewer = document.getElementById("messageMediaViewer");
+    if (!viewer) return;
+
+    viewer.classList.remove("is-open");
+    const stage = viewer.querySelector(".message-media-stage");
+    if (stage) stage.innerHTML = "";
+    if (!document.getElementById("admin")?.classList.contains("is-open")) {
+      document.body.style.overflow = "";
+    }
+  }
+
+  function setupMessageMediaViewer() {
+    document.addEventListener("click", (event) => {
+      const button = event.target.closest(".message-media-button");
+      if (!button) return;
+
+      openMessageMedia(button.dataset.mediaUrl || "", button.dataset.mediaType || "");
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeMessageMedia();
+      }
+    });
+  }
+
+  function createAmbientHeart(options = {}) {
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+    heart.style.left = `${Math.random() * 100}vw`;
+    heart.style.top = options.startAnywhere ? `${Math.random() * 100}vh` : "-24px";
+    heart.style.fontSize = `${Math.random() * 7 + 7}px`;
+    heart.style.animationDuration = `${Math.random() * 8 + 10}s`;
+    heart.style.animationDelay = options.startAnywhere ? `${Math.random() * -10}s` : "0s";
+    heart.style.opacity = `${Math.random() * 0.28 + 0.18}`;
+    heart.style.setProperty("--heart-drift", `${Math.random() * 110 - 55}px`);
+    heart.style.setProperty("--heart-spin", `${Math.random() * 260 - 130}deg`);
+
+    document.body.appendChild(heart);
+    window.setTimeout(() => heart.remove(), 20000);
+  }
+
+  function startAmbientHearts() {
+    if (window.__komalHeartsStarted) return;
+    window.__komalHeartsStarted = true;
+
+    for (let index = 0; index < 55; index += 1) {
+      window.setTimeout(() => createAmbientHeart({ startAnywhere: true }), index * 45);
+    }
+
+    window.setInterval(createAmbientHeart, 150);
+  }
+
+  function setupBirthdayMessageForms() {
+    const pageHashes = {
+      story: "story",
+      vault: "vault",
+      gallery: "gallery",
+      guestbook: "guestbook",
+      kv: "birthday"
+    };
+
+    document.querySelectorAll("[data-message-page]").forEach((form) => {
+      const page = form.dataset.messagePage;
+      const fromInput = form.querySelector("[data-message-from]");
+      const textInput = form.querySelector("[data-message-text]");
+      const mediaInput = form.querySelector("[data-message-media]");
+      const saveButton = form.querySelector("[data-message-save]");
+
+      saveButton?.addEventListener("click", async () => {
+        const file = mediaInput?.files?.[0];
+        const messageId = `msg-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+        const status = form.closest(".admin-form")?.querySelector(".status") || form.querySelector(".status");
+        let posted = false;
+
+        saveButton.disabled = true;
+
+        async function saveMessage(mediaUrl = "", mediaType = "", mediaUploadFailed = false) {
+          const messagesByPage = getBirthdayMessages();
+          const messages = messagesByPage[page] || [];
+          const message = {
+            id: messageId,
+            page,
+            from: fromInput?.value.trim() || "",
+            text: textInput?.value.trim() || "",
+            mediaUrl,
+            mediaType,
+            reply: "",
+            createdAt: Date.now()
+          };
+
+          messages.unshift(message);
+
+          messagesByPage[page] = messages;
+          saveBirthdayMessages(messagesByPage);
+
+          if (document.body.classList.contains("share-mode") && form.matches("[data-public-composer]")) {
+            rememberSharedMessage(page, messageId);
+          }
+
+          if (fromInput) fromInput.value = "";
+          if (textInput) textInput.value = "";
+          if (mediaInput) mediaInput.value = "";
+
+          if (status) status.textContent = "Birthday message posted.";
+
+          renderBirthdayMessages();
+          posted = true;
+
+          if (form.matches("[data-public-composer]") && !document.body.classList.contains("share-mode")) {
+            const nextHash = pageHashes[page];
+
+            if (nextHash) {
+              document.body.classList.remove("share-mode");
+              history.replaceState(null, "", `${window.location.pathname}${window.location.search}#${nextHash}`);
+              renderBirthdayMessages();
+            }
+          }
+
+          if (status) status.textContent = "Saving birthday message...";
+
+          const remoteMessage = mediaUploadFailed
+            ? { ...message, mediaUrl: "", mediaType: "" }
+            : message;
+          const savedRemotely = await saveRemoteBirthdayMessage(remoteMessage);
+          if (status) {
+            status.textContent = savedRemotely
+              ? "Birthday message posted."
+              : "Could not publish online. Check Firebase rules.";
+          }
+        }
+
+        try {
+          if (!file) {
+            await saveMessage();
+            return;
+          }
+
+          if (status) status.textContent = "Uploading media...";
+
+          const uploadedMedia = await uploadBirthdayMessageMedia(file, page, messageId);
+          await saveMessage(uploadedMedia.mediaUrl, uploadedMedia.mediaType, uploadedMedia.mediaUploadFailed);
+        } catch (error) {
+          console.error("Birthday message could not post", error);
+          if (!posted) {
+            await saveMessage("", "", true);
+            return;
+          }
+          if (status) status.textContent = "Birthday message posted.";
+        } finally {
+          saveButton.disabled = false;
+        }
+      });
+    });
+  }
+
+  function setupShareMessageLinks() {
+    document.querySelectorAll("[data-share-target]").forEach((link) => {
+      const target = link.dataset.shareTarget;
+      const baseUrl = window.location.protocol === "file:"
+        ? window.location.href.split("#")[0]
+        : `${window.location.origin}${window.location.pathname}${window.location.search}`;
+      const url = `${baseUrl}#${target}`;
+
+      link.href = url;
+      link.textContent = url;
+
+      link.addEventListener("click", async (event) => {
+        event.preventDefault();
+
+        try {
+          await navigator.clipboard.writeText(url);
+          link.textContent = "Copied link";
+          window.setTimeout(() => {
+            link.textContent = url;
+          }, 1400);
+        } catch {
+          window.location.hash = target;
+        }
+      });
+    });
+  }
+
+  function setupCountdown() {
+    const days = document.getElementById("countDays");
+    const hours = document.getElementById("countHours");
+    const minutes = document.getElementById("countMinutes");
+    const seconds = document.getElementById("countSeconds");
+
+    if (!days || !hours || !minutes || !seconds) return;
+
+    function getNextBirthdayTarget(now) {
+      let target = new Date(now.getFullYear(), BIRTHDAY_MONTH_INDEX, BIRTHDAY_DAY, 0, 0, 0);
+
+      while (target.getTime() <= now.getTime()) {
+        target = new Date(target.getFullYear() + 1, BIRTHDAY_MONTH_INDEX, BIRTHDAY_DAY, 0, 0, 0);
+      }
+
+      return target;
+    }
+
+    function render() {
+      const now = new Date();
+      const target = getNextBirthdayTarget(now);
+
+      const distance = Math.max(target.getTime() - now.getTime(), 0);
+      const totalSeconds = Math.floor(distance / 1000);
+
+      days.textContent = String(Math.floor(totalSeconds / 86400)).padStart(2, "0");
+      hours.textContent = String(Math.floor((totalSeconds % 86400) / 3600)).padStart(2, "0");
+      minutes.textContent = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, "0");
+      seconds.textContent = String(totalSeconds % 60).padStart(2, "0");
+    }
+
+    render();
+    window.setInterval(render, 1000);
+  }
+
+  function openAdminPanel() {
+    const panel = document.getElementById("admin");
+    if (!panel) return;
+
+    panel.classList.add("is-open");
+    panel.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+    renderAdminSession();
+  }
+
+  function lockAdminSession() {
+    localStorage.removeItem(SESSION_KEY);
+    renderAdminSession();
+  }
+
+  function closeAdminPanel() {
+    const panel = document.getElementById("admin");
+    if (!panel) return;
+
+    lockAdminSession();
+    panel.classList.remove("is-open");
+    panel.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+
+    if (window.location.hash === "#admin") {
+      history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+    }
+  }
+
+  function renderAdminSession() {
+    const authCard = document.getElementById("adminAuthCard");
+    const content = document.getElementById("adminContent");
+    const label = document.getElementById("adminUserLabel");
+    const credentials = getCredentials();
+
+    if (!authCard || !content || !label) return;
+
+    if (localStorage.getItem(SESSION_KEY) === "true") {
+      authCard.hidden = true;
+      content.hidden = false;
+      label.textContent = `Signed in as ${credentials.username}`;
+      return;
+    }
+
+    authCard.hidden = false;
+    content.hidden = true;
+    label.textContent = "Signed out";
+  }
+
+  function setupAdminTabs() {
+    const tabs = document.querySelectorAll("[data-admin-tab]");
+    const panels = document.querySelectorAll("[data-admin-panel]");
+    const panelHome = document.querySelector(".admin-panels");
+
+    tabs.forEach((item) => item.classList.remove("is-active"));
+    panels.forEach((panel) => {
+      panel.hidden = true;
+    });
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const activePanel = tab.dataset.adminTab;
+        const isClosing = tab.classList.contains("is-active");
+        const panel = document.querySelector(`[data-admin-panel="${activePanel}"]`);
+
+        tabs.forEach((item) => item.classList.toggle("is-active", !isClosing && item === tab));
+        panels.forEach((panel) => {
+          panel.hidden = true;
+        });
+
+        if (isClosing || !panel) {
+          return;
+        }
+
+        panel.hidden = false;
+        tab.insertAdjacentElement("afterend", panel);
+      });
+    });
+
+    panelHome?.setAttribute("aria-hidden", "true");
+  }
+
+  function setupCredentialForm() {
+    const button = document.getElementById("saveAdminCredentialsBtn");
+    const currentPassword = document.getElementById("currentAdminPassword");
+    const username = document.getElementById("newAdminUsername");
+    const password = document.getElementById("newAdminPassword");
+    const confirmPassword = document.getElementById("confirmAdminPassword");
+    const status = document.getElementById("adminSettingsStatus");
+
+    if (!button || !currentPassword || !username || !password || !confirmPassword || !status) return;
+
+    const credentials = getCredentials();
+    username.value = credentials.username;
+
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const credentials = getCredentials();
+      const nextUsername = username.value.trim() || credentials.username;
+      const nextPassword = password.value;
+      const confirmedPassword = confirmPassword.value;
+
+      if (currentPassword.value !== credentials.password) {
+        status.textContent = "Enter the current admin password first.";
+        return;
+      }
+
+      if (nextPassword || confirmedPassword) {
+        if (nextPassword !== confirmedPassword) {
+          status.textContent = "New password and confirmation do not match.";
+          return;
+        }
+      }
+
+      saveCredentials({
+        username: nextUsername,
+        password: nextPassword || credentials.password
+      });
+
+      status.textContent = "Home and admin login updated.";
+      currentPassword.value = "";
+      password.value = "";
+      confirmPassword.value = "";
+      renderAdminSession();
+    });
+  }
+
+  function setupKvPassword() {
+    const lock = document.getElementById("kvLock");
+    const content = document.getElementById("kvContent");
+    const form = document.getElementById("kvPasswordForm");
+    const input = document.getElementById("kvPasswordInput");
+    const status = document.getElementById("kvPasswordStatus");
+    const adminForm = document.getElementById("kvSettingsForm");
+    const adminInput = document.getElementById("kvAdminPassword");
+    const adminStatus = document.getElementById("kvAdminStatus");
+
+    function renderKvAccess() {
+      const unlocked = localStorage.getItem(KV_SESSION_KEY) === "true";
+
+      if (lock) lock.hidden = unlocked;
+      if (content) content.hidden = !unlocked;
+    }
+
+    if (adminInput) {
+      adminInput.value = getKvPassword();
+    }
+
+    form?.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!input || !status) return;
+
+      if (input.value === getKvPassword()) {
+        localStorage.setItem(KV_SESSION_KEY, "true");
+        input.value = "";
+        status.textContent = "";
+        renderKvAccess();
+        return;
+      }
+
+      status.textContent = "Wrong KV57 password.";
+    });
+
+    adminForm?.addEventListener("submit", () => {
+      if (!adminInput || !adminStatus) return;
+
+      saveKvPassword(adminInput.value.trim());
+      localStorage.removeItem(KV_SESSION_KEY);
+      adminStatus.textContent = "KV57 password updated.";
+      renderKvAccess();
+    });
+
+    renderKvAccess();
+  }
+
+  function setupStoryPassword() {
+    const lock = document.getElementById("storyLock");
+    const content = document.getElementById("storyContent");
+    const form = document.getElementById("storyPasswordForm");
+    const input = document.getElementById("storyPasswordInput");
+    const status = document.getElementById("storyPasswordStatus");
+    const adminForm = document.getElementById("storyForm");
+    const adminInput = document.getElementById("storyAdminPassword");
+    const adminStatus = document.getElementById("storyStatus");
+
+    function renderStoryAccess() {
+      const unlocked = localStorage.getItem(STORY_SESSION_KEY) === "true";
+
+      if (lock) lock.hidden = unlocked;
+      if (content) content.hidden = !unlocked;
+    }
+
+    if (adminInput) {
+      adminInput.value = getStoryPassword();
+    }
+
+    form?.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!input || !status) return;
+
+      if (input.value === getStoryPassword()) {
+        localStorage.setItem(STORY_SESSION_KEY, "true");
+        input.value = "";
+        status.textContent = "";
+        renderStoryAccess();
+        return;
+      }
+
+      status.textContent = "Wrong Our Story password.";
+    });
+
+    adminForm?.addEventListener("submit", () => {
+      if (!adminInput || !adminStatus) return;
+
+      saveStoryPassword(adminInput.value.trim());
+      localStorage.removeItem(STORY_SESSION_KEY);
+      adminStatus.textContent = "Our Story saved.";
+      renderStoryAccess();
+    });
+
+    renderStoryAccess();
+  }
+
+  function setupAdminPanel() {
+    const openButtons = [
+      document.getElementById("adminOpenBtn")
+    ].filter(Boolean);
+    const closeButton = document.getElementById("adminCloseBtn");
+    const loginForm = document.getElementById("adminLoginForm");
+    const logoutButton = document.getElementById("adminLogoutBtn");
+    const usernameInput = document.getElementById("adminUsername");
+    const passwordInput = document.getElementById("adminPassword");
+    const status = document.getElementById("adminAuthStatus");
+
+    openButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        history.replaceState(null, "", "#admin");
+        openAdminPanel();
+      });
+    });
+
+    closeButton?.addEventListener("click", closeAdminPanel);
+
+    window.addEventListener("hashchange", () => {
+      if (window.location.hash === "#admin") {
+        openAdminPanel();
+        return;
+      }
+
+      lockAdminSession();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") closeAdminPanel();
+    });
+
+    loginForm?.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!usernameInput || !passwordInput || !status) return;
+
+      const credentials = getCredentials();
+      const usernameMatches = usernameInput.value.trim().toUpperCase() === credentials.username.toUpperCase();
+      const passwordMatches = passwordInput.value === credentials.password;
+
+      if (usernameMatches && passwordMatches) {
+        localStorage.setItem(SESSION_KEY, "true");
+        passwordInput.value = "";
+        status.textContent = "";
+        renderAdminSession();
+        return;
+      }
+
+      status.textContent = "Wrong username or password.";
+    });
+
+    logoutButton?.addEventListener("click", () => {
+      closeAdminPanel();
+      document.body.classList.remove("page-open");
+      document.querySelectorAll(".public-page").forEach((page) => {
+        page.classList.remove("is-active-page");
+      });
+      history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+    });
+
+    setupAdminTabs();
+    setupCredentialForm();
+    renderAdminSession();
+
+    if (window.location.hash === "#admin") {
+      openAdminPanel();
+    }
+  }
+
+  function setupPublicPages() {
+    const pageIds = ["story", "vault", "gallery", "guestbook", "birthday"];
+    const composePages = {
+      "add-story": "story",
+      "add-vault": "vault",
+      "add-gallery": "gallery",
+      "add-wishes": "guestbook",
+      "add-guestbook": "guestbook",
+      "add-kv": "birthday"
+    };
+    const composerKeys = {
+      "add-story": "story",
+      "add-vault": "vault",
+      "add-gallery": "gallery",
+      "add-wishes": "guestbook",
+      "add-guestbook": "guestbook",
+      "add-kv": "kv"
+    };
+    const initialHash = window.location.hash.replace("#", "");
+    const lockedShareHash = composerKeys[initialHash] ? initialHash : "";
+    const pages = pageIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+    const navTargets = {
+      "": "home",
+      home: "home",
+      story: "story",
+      vault: "vault",
+      gallery: "gallery",
+      guestbook: "guestbook",
+      birthday: "birthday",
+      "add-story": "story",
+      "add-vault": "vault",
+      "add-gallery": "gallery",
+      "add-wishes": "guestbook",
+      "add-guestbook": "guestbook",
+      "add-kv": "birthday"
+    };
+
+    function updateActiveNav(rawId, activePage) {
+      const activeTarget = navTargets[rawId] || activePage || "home";
+
+      document.querySelectorAll(".nav-links a").forEach((link) => {
+        const target = link.getAttribute("href")?.replace("#", "") || "home";
+        const isActive = target === activeTarget;
+        link.classList.toggle("is-active", isActive);
+
+        if (isActive) {
+          link.setAttribute("aria-current", "page");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    }
+
+    function showPageFromHash() {
+      let id = window.location.hash.replace("#", "");
+
+      if (lockedShareHash && id !== lockedShareHash) {
+        id = lockedShareHash;
+        history.replaceState(null, "", `${window.location.pathname}${window.location.search}#${lockedShareHash}`);
+      }
+
+      if (id === "home") {
+        history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+      }
+
+      if (id === "notes") {
+        id = "guestbook";
+        history.replaceState(null, "", `${window.location.pathname}${window.location.search}#guestbook`);
+      }
+
+      const activePage = composePages[id] || (pageIds.includes(id) ? id : "");
+      const activeComposer = composerKeys[id] || "";
+      const isShareMode = Boolean(lockedShareHash);
+
+      updateActiveNav(id, activePage);
+
+      if (activePage !== "story") {
+        localStorage.removeItem(STORY_SESSION_KEY);
+      }
+
+      if (activePage !== "birthday") {
+        localStorage.removeItem(KV_SESSION_KEY);
+      }
+
+      document.body.classList.toggle("page-open", Boolean(activePage));
+      document.body.classList.toggle("share-mode", isShareMode);
+
+      pages.forEach((page) => {
+        page.classList.toggle("is-active-page", page.id === activePage);
+      });
+
+      document.querySelectorAll("[data-public-composer]").forEach((composer) => {
+        composer.hidden = composer.dataset.publicComposer !== activeComposer;
+      });
+
+      document.getElementById("storyLock")?.toggleAttribute("hidden", localStorage.getItem(STORY_SESSION_KEY) === "true");
+      document.getElementById("storyContent")?.toggleAttribute("hidden", localStorage.getItem(STORY_SESSION_KEY) !== "true");
+      document.getElementById("kvLock")?.toggleAttribute("hidden", localStorage.getItem(KV_SESSION_KEY) === "true");
+      document.getElementById("kvContent")?.toggleAttribute("hidden", localStorage.getItem(KV_SESSION_KEY) !== "true");
+
+      renderBirthdayMessages();
+      loadRemoteBirthdayMessages();
+    }
+
+    window.addEventListener("hashchange", showPageFromHash);
+    showPageFromHash();
+  }
+
+  captureDomDefaultSettings();
+
+  document.addEventListener("DOMContentLoaded", () => {
+    captureDomDefaultSettings();
+    localStorage.removeItem(SESSION_KEY);
+    localStorage.removeItem(STORY_SESSION_KEY);
+    localStorage.removeItem(KV_SESSION_KEY);
+    applyPageSettings();
+    setupCountdown();
+    setupPageSettingsForm();
+    setupPanelMinimizeButtons();
+    setupImageInputs();
+    setupAudioInputs();
+    setupSettingsReset();
+    setupBackgroundAudio();
+    ensureBirthdayMessageIds();
+    loadRemoteBirthdayMessages();
+    listenRemoteBirthdayMessages();
+    setupBirthdayMessageForms();
+    setupBirthdayMessageDeletion();
+    setupKomalReplies();
+    setupMessageMediaViewer();
+    startAmbientHearts();
+    setupShareMessageLinks();
+    setupAdminPanel();
+    setupKvPassword();
+    setupStoryPassword();
+    setupPublicPages();
+    renderBirthdayMessages();
+  });
+
+  window.KomalSite = {
+    applyPageSettings,
+    savePageSettings,
+    resetPageSettings
+  };
+}());
+
+
+/* app.js */
+
+
+async function setupFirebaseFeatures() {
+  try {
+    setupNoteForm();
+    setupGuestbookForm();
+    setupMemoryForm();
+    setupPhotoForm();
+    setupStoryForm();
+
+    window.addEventListener("komal:page-settings-saved", async (event) => {
+      await saveRemotePageSettings(event.detail);
+    });
+
+    window.addEventListener("komal:page-settings-reset", async () => {
+      await resetRemotePageSettings();
+    });
+
+    await Promise.allSettled([
+      loadNotes(),
+      loadGuestbook?.(),
+      loadMemories?.(),
+      loadGallery?.(),
+      loadRemotePageSettings()
+    ]);
+  } catch (error) {
+    console.error("Firebase features could not start", error);
+  }
+}
+
+captureDomDefaultSettings();
+setupFirebaseFeatures();
+startHeartRain();
+
+  </script>
+</body>
+</html>
+
