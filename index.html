@@ -1142,6 +1142,118 @@
       .title{font-size:clamp(46px,16vw,64px)}
       .posted-messages{grid-template-columns:1fr}
     }
+    @media(max-width:700px){
+      .heart{
+        opacity:.22;
+        filter:drop-shadow(0 0 6px rgba(255,157,180,.22));
+      }
+      .heart:before,.heart:after{
+        opacity:.72;
+      }
+      .topbar{
+        padding:8px 8px 0;
+      }
+      .nav-wrap{
+        position:relative;
+        display:block;
+      }
+      .nav{
+        width:calc(100% - 88px);
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:7px;
+        padding:9px;
+        border-radius:22px;
+      }
+      .admin-btn{
+        position:absolute;
+        top:0;
+        right:0;
+        width:78px;
+        min-width:78px;
+        min-height:38px;
+        padding:8px 8px;
+        border-radius:20px;
+        font-size:10px;
+        line-height:1;
+      }
+      #home{
+        min-height:100svh;
+        padding:188px 10px 20px;
+      }
+      .hero{
+        min-height:calc(100svh - 208px);
+        justify-content:flex-start;
+      }
+      .title{
+        width:min(100%,340px);
+        max-width:340px;
+        margin:0 auto 16px;
+        font-family:var(--script-font);
+        font-size:clamp(46px,15vw,62px);
+        line-height:.96;
+        letter-spacing:0;
+        text-transform:uppercase;
+        overflow-wrap:normal;
+        word-break:normal;
+        hyphens:none;
+      }
+      .gift{
+        animation:none;
+        width:118px;
+        height:118px;
+        margin-bottom:14px;
+      }
+      .gift-box{
+        width:118px;
+        height:118px;
+      }
+      .gift:hover{transform:none}
+      .gift:before,.gift:after{
+        animation:none;
+      }
+      .countdown{
+        width:min(100%,330px);
+        gap:9px;
+      }
+      .timebox{
+        min-height:94px;
+        padding:16px 8px 12px;
+      }
+      .num{font-size:clamp(34px,11vw,46px)}
+      .password-screen{
+        place-items:center;
+        padding:12px;
+        overflow:hidden;
+      }
+      .login-shell{
+        width:min(390px,calc(100vw - 24px));
+      }
+      .login{
+        padding:26px 18px 22px;
+        border-radius:20px;
+      }
+      .login h3{
+        font-family:var(--script-font);
+        font-size:34px;
+      }
+      .login input{
+        height:50px;
+        font-size:17px;
+      }
+      .login .mini{
+        height:48px;
+      }
+    }
+    @media(max-width:380px){
+      #home{padding-top:182px}
+      .nav{width:calc(100% - 76px);gap:6px;padding:8px}
+      .nav a{min-height:38px;font-size:9px;letter-spacing:.025em}
+      .admin-btn{width:68px;min-width:68px;font-size:9px}
+      .title{max-width:300px;font-size:clamp(41px,14vw,54px)}
+      .gift,.gift-box{width:108px;height:108px}
+      .countdown{width:min(100%,310px)}
+      .timebox{min-height:88px}
+    }
   </style>
 </head>
 <body>
@@ -1282,7 +1394,7 @@
     window.saveSiteMedia=saveSiteMedia;window.removeSiteMedia=removeSiteMedia;
     function adminSettingsEditor(){return `<label>USERNAME</label><input id="adminUsernameSetting" value="${(data.adminUsername||'ADMIN').replaceAll('"','&quot;')}"><label>CURRENT PASSWORD</label><input id="currentAdminPasswordSetting" type="password" placeholder="Current password"><label>NEW PASSWORD</label><input id="newAdminPasswordSetting" type="password" placeholder="New password"><button class="mini save-login" onclick="updateAdminLogin()">Save</button><p class="note" id="adminLoginStatus"></p><label>WATERMARK PICTURE</label><input id="watermarkInput" type="file" accept="image/*"><button class="mini save-login" onclick="saveSiteMedia('watermark')">Save Watermark</button>${data.watermarkName?`<button class="mini" onclick="removeSiteMedia('watermark')">Remove Watermark</button><p class="note">Current: ${escapeHTML(data.watermarkName)}</p>`:''}<label>SONG</label><input id="songInput" type="file" accept="audio/*"><button class="mini save-login" onclick="saveSiteMedia('song')">Save Song</button>${data.songName?`<button class="mini" onclick="removeSiteMedia('song')">Remove Song</button><p class="note">Current: ${escapeHTML(data.songName)}</p>`:''}<p class="note" id="siteMediaStatus"></p>`}
     function renderAdmin(){adminList.innerHTML=`<div class="admin-item"><div class="admin-head">HOME <span>+</span></div><div class="admin-body"><label>Main Title</label><input value="${data.homeTitle.replaceAll('"','&quot;')}" onchange="data.homeTitle=this.value;save()"><label>Love Quote</label><textarea onchange="data.homeQuote=this.value;save()">${data.homeQuote}</textarea></div></div>`+pairEditor('LETTERS TO KOMAL','letters')+pairEditor('MEMORY VAULT','memory')+pairEditor('OUR STORY','story')+pairEditor('KV57','kv')+`<div class="admin-item"><div class="admin-head">ADMIN SETTINGS <span>+</span></div><div class="admin-body">${adminSettingsEditor()}</div></div>`;document.querySelectorAll('.admin-head').forEach(h=>h.onclick=async()=>{const item=h.parentElement;const key=item.dataset.settingsKey;if((key==='story'||key==='kv')&&!item.classList.contains('open')){if(!await askAdminPassword(`Enter admin password to open ${key==='story'?'Our Story':'KV57'} settings.`))return}item.classList.toggle('open');h.querySelector('span').textContent=item.classList.contains('open')?'-':'+'})}
-    for(let i=0;i<60;i++){let h=document.createElement('span');h.className='heart';h.style.left=Math.random()*100+'vw';h.style.animationDuration=7+Math.random()*12+'s';h.style.animationDelay=Math.random()*-12+'s';h.style.transform=`scale(${.65+Math.random()*1.1})`;hearts.appendChild(h)}renderAll();loadFromFirebase();if(location.hash==='#admin')showPage('admin');
+    const heartCount=window.matchMedia('(max-width:700px)').matches?28:60;for(let i=0;i<heartCount;i++){let h=document.createElement('span');h.className='heart';h.style.left=Math.random()*100+'vw';h.style.animationDuration=9+Math.random()*14+'s';h.style.animationDelay=Math.random()*-12+'s';h.style.transform=`scale(${.55+Math.random()*.9})`;hearts.appendChild(h)}renderAll();loadFromFirebase();if(location.hash==='#admin')showPage('admin');
   </script>
 </body>
 </html>
