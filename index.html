@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>For Komal | Birthday Countdown</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
     :root{
       --bg1:#060205;
@@ -16,13 +19,15 @@
       --gold2:#fff0bd;
       --line:rgba(205,167,99,.3);
       --text:#fff6f8;
+      --body-font:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+      --script-font:"Great Vibes","Brush Script MT","Lucida Handwriting","Monotype Corsiva",cursive;
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth}
     body{
       min-height:100vh;
       color:var(--text);
-      font-family:Georgia,"Times New Roman",system-ui,sans-serif;
+      font-family:var(--body-font);
       background:
         radial-gradient(circle at 17% 19%,rgba(92,35,61,.38),transparent 35%),
         radial-gradient(circle at 84% 13%,rgba(92,62,38,.38),transparent 34%),
@@ -960,6 +965,182 @@
     @media(max-width:380px){
       .posted-messages{grid-template-columns:1fr}
       .posted-card{padding:20px 14px 22px}
+    }
+    .title,
+    .page-tagline,
+    .message-box h3,
+    .posted-media.empty,
+    .posted-card h3,
+    h2,
+    .login-title,
+    .login h3,
+    .theme-dialog h3,
+    .komal-reply-text{
+      font-family:var(--script-font);
+    }
+    button,.nav a,.label,.num,h3,label,input,textarea,.admin-head,.komal-reply-label{
+      font-family:var(--body-font);
+    }
+    @media(max-width:700px){
+      body{overflow-x:hidden}
+      body:has(#home.active-page){overflow:auto}
+      .topbar{
+        height:auto;
+        min-height:0;
+        padding:10px 10px 0;
+      }
+      .nav-wrap{
+        width:100%;
+        max-width:100%;
+        flex-direction:column;
+        align-items:stretch;
+        gap:8px;
+      }
+      .nav{
+        display:grid;
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        width:100%;
+        gap:8px;
+        padding:10px;
+        border-radius:24px;
+        overflow:visible;
+      }
+      .nav a{
+        min-width:0;
+        width:100%;
+        min-height:42px;
+        padding:10px 6px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:11px;
+        line-height:1.08;
+        letter-spacing:.045em;
+        white-space:normal;
+      }
+      .admin-btn{
+        position:static;
+        align-self:flex-end;
+        min-width:92px;
+        min-height:38px;
+        padding:9px 16px;
+        font-size:11px;
+        letter-spacing:.05em;
+      }
+      button{min-width:0}
+      #home{
+        height:auto;
+        min-height:100svh;
+        padding:218px 12px 26px;
+        overflow:visible;
+      }
+      .hero{
+        min-height:0;
+        height:auto;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:flex-start;
+      }
+      .title{
+        position:static;
+        transform:none;
+        max-width:100%;
+        width:100%;
+        margin:4px auto 20px;
+        font-size:clamp(52px,17vw,76px);
+        line-height:.96;
+        letter-spacing:0;
+        white-space:normal;
+        overflow-wrap:normal;
+        text-transform:uppercase;
+      }
+      .title:hover{transform:none}
+      .gift{
+        position:relative;
+        left:auto;
+        top:auto;
+        width:132px;
+        height:132px;
+        margin:0 auto 18px;
+        transform:none;
+      }
+      .gift-box{
+        width:132px;
+        height:132px;
+        transform:none;
+      }
+      .gift:hover{transform:scale(1.04)}
+      .countdown{
+        position:relative;
+        left:auto;
+        top:auto;
+        transform:none;
+        width:min(100%,360px);
+        display:grid;
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:10px;
+        margin:0 auto;
+      }
+      .timebox{
+        width:100%;
+        min-height:102px;
+        padding:18px 8px 14px;
+        border-radius:16px;
+      }
+      .num{
+        font-size:clamp(38px,13vw,52px);
+        line-height:.92;
+      }
+      .label{
+        margin-top:8px;
+        font-size:10px;
+        letter-spacing:.12em;
+      }
+      .timebox:nth-child(2):before,
+      .timebox:nth-child(2):after{
+        display:none;
+      }
+      .page:not(#home){
+        padding:220px 10px 36px;
+      }
+      .page-tagline{
+        width:100%;
+        margin:0 auto 34px;
+        font-size:clamp(36px,13vw,54px);
+        line-height:1.18;
+        text-underline-offset:8px;
+      }
+      .post-area{
+        width:100%;
+        margin:42px auto 34px;
+      }
+      .message-box{
+        width:100%;
+      }
+      .posted-messages{
+        width:100%;
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:22px 10px;
+      }
+      .posted-card{
+        padding:16px 9px 18px;
+      }
+      .posted-card h3{
+        font-size:clamp(25px,9vw,34px);
+      }
+      .login-shell,.theme-dialog{
+        width:calc(100vw - 24px);
+      }
+      .admin-panel{
+        width:100%;
+      }
+    }
+    @media(max-width:390px){
+      #home{padding-top:232px}
+      .nav a{font-size:10px;padding:9px 4px}
+      .title{font-size:clamp(46px,16vw,64px)}
+      .posted-messages{grid-template-columns:1fr}
     }
   </style>
 </head>
